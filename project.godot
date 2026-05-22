@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="KILL LOOP"
+config/name="Ball"
 run/main_scene="uid://oobqc5xxn0o8"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="KILL LOOP"
@@ -34,6 +34,13 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 
+[dotnet]
+
+project/assembly_name="ball"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 [global_group]
 
 enemy=""
