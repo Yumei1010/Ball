@@ -63,7 +63,6 @@ offset_right = 1859.0
 offset_bottom = 1024.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_ejkra")
 expand_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2044906776]
