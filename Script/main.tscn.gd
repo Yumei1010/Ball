@@ -15,10 +15,6 @@ func _ready() -> void:
 	player.combo_lost.connect(game_ui.on_combo_lost)
 	spawner.game_time_updated.connect(game_ui.update_game_timer)
 	spawner.score_updated.connect(game_ui.on_score_updated)
-	player.energy_bar_1_filled.connect(game_ui.play_bar1_full_animation)
-	player.energy_bar_2_filled.connect(game_ui.play_bar2_full_animation)
-	player.energy_bar_3_filled.connect(game_ui.play_bar3_full_animation)
-	player.launch_failed.connect(game_ui.on_player_launch_failed)
 	player.player_died.connect(_on_player_died)
 
 	var bounce_mgr: Node = $BounceCounterManager

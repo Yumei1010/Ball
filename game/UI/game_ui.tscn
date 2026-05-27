@@ -29,18 +29,6 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="EnergyBar1_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1322686864]
-visible = false
-position = Vector2(659, 13)
-
-[node name="EnergyBar2_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1511803887]
-visible = false
-position = Vector2(959, 13)
-
-[node name="EnergyBar3_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=592816810]
-visible = false
-position = Vector2(1259, 13)
-
 [node name="EnergyBar" parent="BoxContainer" unique_id=248450969 instance=ExtResource("2_igryo")]
 layout_mode = 2
 
@@ -49,9 +37,6 @@ layout_mode = 2
 
 [node name="EnergyBar3" parent="BoxContainer" unique_id=239746978 instance=ExtResource("4_hedtu")]
 layout_mode = 2
-
-[node name="LaunchFailEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1154053665]
-position = Vector2(659, 13)
 
 [node name="ComboLabel" type="Label" parent="." unique_id=230386039]
 custom_minimum_size = Vector2(960, 540)

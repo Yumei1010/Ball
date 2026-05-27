@@ -46,7 +46,3 @@ func on_combo_lost() -> void:
 	combo_label.visible = false
 
 
-func play_bar1_full_animation() -> void: pass
-func play_bar2_full_animation() -> void: pass
-func play_bar3_full_animation() -> void: pass
-func on_player_launch_failed() -> void: pass
