@@ -233,7 +233,9 @@ func _on_kill_area_entered(area: Area2D) -> void:
 func _on_body_entered(body: Node) -> void:
 	if is_dead: return
 
-	var cs: CollisionShape2D = $CollisionShape2D; if not cs.shape: return; var player_radius: float = cs.shape.radius * global_scale.x
+		var cs: CollisionShape2D = $CollisionShape2D
+		if not cs.shape: return
+		var player_radius: float = cs.shape.radius * global_scale.x
 	var impact_direction: Vector2 = velocity_before_impact.normalized()
 	var impact_position: Vector2 = global_position + impact_direction * player_radius
 
