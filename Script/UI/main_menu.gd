@@ -88,7 +88,8 @@ func start_game():
 	quit_button.disabled = true
 	
 	# 2. 播放“连击中断”动画
-	background_effects.play("combo_lost") # 我们假设这个动画名叫 "combo_lost"
+	if is_instance_valid(background_effects) and background_effects.sprite_frames:
+		background_effects.play("combo_lost")
 	
 	# 3. 等待这个动画播放【完毕】
 	await background_effects.animation_finished

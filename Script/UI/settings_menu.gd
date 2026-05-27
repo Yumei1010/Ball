@@ -38,7 +38,7 @@ func _ready() -> void:
 
 	# --- 【新增】在所有数据都准备好后，开始播放背景动画 ---
 	if is_instance_valid(background_animation):
-		background_animation.play("default")
+		if background_animation and background_animation.sprite_frames: background_animation.play("default")
 
 
 func on_tutorial_button_pressed() -> void:
