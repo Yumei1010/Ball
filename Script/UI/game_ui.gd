@@ -3,7 +3,6 @@ extends Control
 @onready var score_label := $ScoreLabel as Label
 @onready var high_score_label := $HighScoreLabel as Label
 @onready var combo_label := $ComboLabel as Label
-@onready var speed_value_label := $HBoxContainer/SpeedValue as Label
 @onready var game_timer_label := $GameTimerLabel as Label
 @onready var energy_bar_1 := $BoxContainer/EnergyBar as TextureProgressBar
 @onready var energy_bar_2 := $BoxContainer/EnergyBar2 as TextureProgressBar

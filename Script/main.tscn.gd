@@ -10,7 +10,6 @@ func _ready() -> void:
 	var game_ui: Control = $GameUI
 	var spawner: Node = $EnemySpawner
 
-	player.speed_updated.connect(game_ui.update_speed_label)
 	player.energy_updated.connect(game_ui.update_energy_display)
 	player.combo_updated.connect(game_ui.on_combo_updated)
 	player.combo_lost.connect(game_ui.on_combo_lost)
