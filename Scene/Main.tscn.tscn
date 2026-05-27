@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://fue54mlf5e0c" path="res://Script/main.tscn.gd" id="1_0n0co"]
 [ext_resource type="PackedScene" uid="uid://cbus8chf27tph" path="res://game/actors/player/PlayerBall.tscn" id="1_axlnn"]
-[ext_resource type="Texture2D" uid="uid://6ifiu5e3bnln" path="res://assets/UI/Background/Inner Background.png" id="2_0n0co"]
 [ext_resource type="Script" uid="uid://ci1jjrnjla6cw" path="res://Script/effect/camera_shaker.gd" id="2_pff3i"]
 [ext_resource type="PackedScene" uid="uid://dxb2ihg5s7iiy" path="res://game/UI/game_ui.tscn" id="2_ql5uw"]
 [ext_resource type="PackedScene" uid="uid://c3rlf8mfiwqdj" path="res://game/effect/background_effects.tscn" id="3_ksvd0"]

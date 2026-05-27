@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx6atr8b6pw7l"]
+[gd_scene load_steps=3 format=3 uid="uid://bx6atr8b6pw7l"]
 
-[ext_resource type="Texture2D" uid="uid://l70w5juoy0n1" path="res://assets/UI/Background/Rectangular Background.png" id="1_nllyb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi8co"]
 size = Vector2(1919.42, 129.174)
