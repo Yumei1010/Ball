@@ -38,7 +38,7 @@ func _ready() -> void:
 	gradient.colors = PackedColorArray([Color.BLACK, Color.WHITE])
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# _process 只负责画点，不再关心颜色
 	if not is_enabled or not is_instance_valid(parent_node):
 		if get_point_count() > 0: remove_point(get_point_count() - 1)

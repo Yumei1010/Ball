@@ -64,7 +64,6 @@ func _ready() -> void:
 	max_contacts_reported = 5
 	sleeping = false
 	kill_area.area_entered.connect(_on_kill_area_entered)
-	body_entered.connect(_on_body_entered)
 	current_max_speed = default_max_speed
 	speed_updated.connect(on_speed_updated)
 

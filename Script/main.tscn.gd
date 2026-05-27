@@ -29,7 +29,6 @@ func _ready() -> void:
 	spawner.game_time_updated.connect(game_ui.update_game_timer)
 	spawner.score_updated.connect(game_ui.on_score_updated)
 	player.combo_lost.connect(background_effects.play_combo_lost_effect)
-	player.wall_bounced.connect(audio_manager.on_player_wall_bounced)
 	player.wall_bounced.connect(background_effects.play_bounce_effect)
 	player.energy_bar_1_filled.connect(game_ui.play_bar1_full_animation)
 	player.energy_bar_2_filled.connect(game_ui.play_bar2_full_animation)

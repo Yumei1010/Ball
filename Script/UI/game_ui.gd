@@ -1,19 +1,19 @@
 extends Control
 
-@onready var score_label: Label = $ScoreLabel
-@onready var high_score_label: Label = $HighScoreLabel
-@onready var combo_label: Label = $ComboLabel
-@onready var speed_value_label: Label = $HBoxContainer/SpeedValue
-@onready var game_timer_label: Label = $GameTimerLabel
-@onready var energy_bar_1: TextureProgressBar = $BoxContainer/EnergyBar1
-@onready var energy_bar_2: TextureProgressBar = $BoxContainer/EnergyBar2
-@onready var energy_bar_3: TextureProgressBar = $BoxContainer/EnergyBar3
-@onready var effect_bar1_full: AnimatedSprite2D = $BoxContainer/EnergyBar1_FullEffect
-@onready var effect_bar2_full: AnimatedSprite2D = $BoxContainer/EnergyBar2_FullEffect
-@onready var effect_bar3_full: AnimatedSprite2D = $BoxContainer/EnergyBar3_FullEffect
-@onready var launch_fail_effect: AnimatedSprite2D = $BoxContainer/LaunchFailEffect
-@onready var combo_lost_anim: AnimationPlayer = $ComboLostAnimationPlayer
-@onready var danger_flash: ColorRect = $DangerFlash
+@onready var score_label := $ScoreLabel as Label
+@onready var high_score_label := $HighScoreLabel as Label
+@onready var combo_label := $ComboLabel as Label
+@onready var speed_value_label := get_node_or_null("HBoxContainer/SpeedValue") as Label
+@onready var game_timer_label := get_node_or_null("GameTimerLabel") as Label
+@onready var energy_bar_1 := get_node_or_null("BoxContainer/EnergyBar1") as TextureProgressBar
+@onready var energy_bar_2 := get_node_or_null("BoxContainer/EnergyBar2") as TextureProgressBar
+@onready var energy_bar_3 := get_node_or_null("BoxContainer/EnergyBar3") as TextureProgressBar
+@onready var effect_bar1_full := get_node_or_null("BoxContainer/EnergyBar1_FullEffect") as AnimatedSprite2D
+@onready var effect_bar2_full := get_node_or_null("BoxContainer/EnergyBar2_FullEffect") as AnimatedSprite2D
+@onready var effect_bar3_full := get_node_or_null("BoxContainer/EnergyBar3_FullEffect") as AnimatedSprite2D
+@onready var launch_fail_effect := get_node_or_null("BoxContainer/LaunchFailEffect") as AnimatedSprite2D
+@onready var combo_lost_anim := get_node_or_null("ComboLostAnimationPlayer") as AnimationPlayer
+@onready var danger_flash := get_node_or_null("DangerFlash") as ColorRect
 
 var displayed_score: float = 0.0
 var score_tween: Tween
