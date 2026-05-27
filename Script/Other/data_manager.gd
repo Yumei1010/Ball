@@ -46,7 +46,7 @@ func _ready() -> void:
 	var os_lang = OS.get_locale_language() 
 	
 	if os_lang == "zh":
-		settings["language"] = "zh_CN" # 如果是中文系统，默认语言设为中文
+		settings["language"] = "zh" # 如果是中文系统，默认语言设为中文
 	else:
 		settings["language"] = "en"    # 其他所有系统，默认语言设为英文
 	# -------------------------------------------------------------
@@ -77,7 +77,7 @@ func debug_reset_all_data() -> void:
 	# --- 【核心修正】在重置设置时，动态判断默认语言 ---
 	var default_lang = "en"
 	if OS.get_locale_language() == "zh":
-		default_lang = "zh_CN"
+		default_lang = "zh"
 	
 	# 3. 重置设置字典
 	settings = {

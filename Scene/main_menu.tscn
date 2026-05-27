@@ -68,9 +68,6 @@ expand_mode = 1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2044906776]
 position = Vector2(984.31244, 415.99997)
 scale = Vector2(1.0253906, 0.97833323)
-autoplay = "default"
-frame = 56
-frame_progress = 1.0
 
 [node name="BackgroundEffects" parent="." unique_id=1533792561 instance=ExtResource("48_jwsrh")]
 position = Vector2(960, 540)

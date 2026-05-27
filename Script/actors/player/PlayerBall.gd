@@ -205,6 +205,7 @@ func _update_energy(new_energy: float) -> void:
 func _on_kill_area_entered(area: Area2D) -> void:
 	if is_dead: return
 	var enemy_body: Node = area.owner
+	if not enemy_body: return
 	if velocity_before_impact.length_squared() <= kill_threshold * kill_threshold: return
 	if not enemy_body.is_in_group("enemy"): return
 
@@ -232,7 +233,7 @@ func _on_kill_area_entered(area: Area2D) -> void:
 func _on_body_entered(body: Node) -> void:
 	if is_dead: return
 
-	var player_radius: float = $CollisionShape2D.shape.radius * global_scale.x
+	var cs: CollisionShape2D = $CollisionShape2D; if not cs.shape: return; var player_radius: float = cs.shape.radius * global_scale.x
 	var impact_direction: Vector2 = velocity_before_impact.normalized()
 	var impact_position: Vector2 = global_position + impact_direction * player_radius
 

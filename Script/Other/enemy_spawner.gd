@@ -34,11 +34,16 @@ const FloatingText = preload("res://game/effect/floating_text.tscn")
 
 
 func _ready() -> void:
-	# 1. 加载并解析 JSON 数据
-	var file = FileAccess.open("res://spawn_waves.json", FileAccess.READ)
-	var json_data = JSON.parse_string(file.get_as_text())
-	wave_data = json_data.waves
+	var file := FileAccess.open("res://spawn_waves.json", FileAccess.READ)
+	if not file:
+		push_error("enemy_spawner: Cannot open spawn_waves.json")
+		return
+	var json_data := JSON.parse_string(file.get_as_text())
 	file.close()
+	if json_data == null or not json_data.has("waves"):
+		push_error("enemy_spawner: Invalid spawn_waves.json")
+		return
+	wave_data = json_data.waves
 
 	# 2. 连接计时器信号
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -210,7 +215,7 @@ func _find_safe_spawn_position() -> Vector2:
 	
 	# 1. 获取生成区域碰撞体（CollisionShape2D）的形状资源（Shape）
 	#    这个形状资源（比如 RectangleShape2D）内部，才存储着真正的尺寸信息。
-	var spawn_shape_resource = spawn_zone_shape.shape
+	if not spawn_zone_shape: return Vector2.INF; var spawn_shape_resource := spawn_zone_shape.shape
 	
 	# 2. 获取这个形状资源的【局部】矩形范围。
 	#    例如，一个大小为 (1920, 1080) 的矩形，它的 get_rect() 结果

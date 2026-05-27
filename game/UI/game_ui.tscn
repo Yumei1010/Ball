@@ -37,21 +37,14 @@ alignment = 1
 [node name="EnergyBar1_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1322686864]
 visible = false
 position = Vector2(659, 13)
-animation = &"play_full_effect"
-frame = 11
-frame_progress = 1.0
 
 [node name="EnergyBar2_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1511803887]
 visible = false
 position = Vector2(959, 13)
-animation = &"play_full_effect"
-frame = 11
-frame_progress = 1.0
 
 [node name="EnergyBar3_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=592816810]
 visible = false
 position = Vector2(1259, 13)
-animation = &"play_full_effect"
 
 [node name="EnergyBar" parent="BoxContainer" unique_id=248450969 instance=ExtResource("2_igryo")]
 layout_mode = 2
@@ -64,9 +57,6 @@ layout_mode = 2
 
 [node name="LaunchFailEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1154053665]
 position = Vector2(659, 13)
-animation = &"flash"
-frame = 20
-frame_progress = 1.0
 
 [node name="SpeedLabel" type="Label" parent="." unique_id=1071767584]
 layout_mode = 0

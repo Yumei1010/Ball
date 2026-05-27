@@ -13,5 +13,9 @@ func _on_body_entered(body: Node) -> void:
 	die_in_chain_reaction()
 
 
+func die(_impact_direction: Vector2) -> void:
+	queue_free()
+
+
 func die_in_chain_reaction() -> void:
 	queue_free()
