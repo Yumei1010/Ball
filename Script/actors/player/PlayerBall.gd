@@ -37,7 +37,6 @@ signal player_died()
 @onready var death_effect: ColorRect = get_node("/root/Main_tscn/DeathInversionEffect")
 @onready var spawner = get_node("/root/Main_tscn/EnemySpawner") 
 @onready var camera: Camera2D = get_node("/root/Main_tscn/Camera2D")
-@onready var crt_effect: ColorRect = get_node("/root/GlobalEffects/ColorRect") # 获取 CRT 特效
 
 var is_dead: bool = false
 var is_aiming: bool = false
@@ -89,9 +88,7 @@ func _input(event: InputEvent) -> void:
 				line_2d.add_point(Vector2.ZERO); line_2d.add_point(Vector2.ZERO)
 				if is_instance_valid(slow_mo_audio):
 					slow_mo_audio.play()
-				if has_method("fade_slow_mo_filter"):
-					fade_slow_mo_filter(true)
-					
+
 				# -------------------------------------------------------------
 				# --- 【新增】进入子弹时间，镜头平滑拉近到 1.15 倍！ ---
 				tween_camera_zoom(Vector2(1.05, 1.15), 0.2)
@@ -105,8 +102,6 @@ func _input(event: InputEvent) -> void:
 				line_2d.clear_points()
 				if is_instance_valid(slow_mo_audio):
 					slow_mo_audio.stop()
-				if has_method("fade_slow_mo_filter"):
-					fade_slow_mo_filter(false)
 
 				# -------------------------------------------------------------
 				# --- 【新增】退出子弹时间，镜头平滑恢复到 1.0 倍！ ---
@@ -214,7 +209,6 @@ func _cancel_aiming():
 	line_2d.clear_points()
 	if is_instance_valid(slow_mo_audio): slow_mo_audio.stop()
 	if is_instance_valid(cancel_audio): cancel_audio.play()
-	if has_method("fade_slow_mo_filter"): fade_slow_mo_filter(false)
 	# --- 【新增】右键取消时，镜头也平滑恢复！ ---
 	if has_method("tween_camera_zoom"):
 		tween_camera_zoom(Vector2(1.0, 1.0), 0.2)
@@ -406,23 +400,6 @@ func _tween_line_color(target_color: Color):
 	
 	# c) 播放颜色过渡动画
 	line_color_tween.tween_property(line_2d, "default_color", target_color, 0.003)
-
-
-
-# --- 添加全新的、简化的滤镜控制函数 ---
-func fade_slow_mo_filter(turn_on: bool):
-	if not is_instance_valid(crt_effect) or not crt_effect.material: return
-
-	var tween = create_tween().set_trans(Tween.TRANS_SINE)
-	var final_mix_value = 1.0 if turn_on else 0.0
-	
-	# 我们只对 "slow_mo_mix" 这一个参数进行动画
-	tween.tween_method(
-		func(v): crt_effect.material.set_shader_parameter("slow_mo_mix", v),
-		crt_effect.material.get_shader_parameter("slow_mo_mix"),
-		final_mix_value,
-		0.2
-	)
 
 
 

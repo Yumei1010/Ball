@@ -23,9 +23,9 @@ config/icon="uid://bs2eutjtdntkj"
 
 [autoload]
 
+PlaceholderArt="*res://Script/Other/placeholder_art.gd"
 DataManager="*res://Script/Other/data_manager.gd"
 MusicManager="*res://game/music/music_manager.tscn"
-GlobalEffects="*res://game/effect/global_effects.tscn"
 UiAudioManager="*res://game/music/ui_audio_manager.tscn"
 
 [display]
@@ -41,6 +41,7 @@ project/assembly_name="ball"
 [editor_plugins]
 
 enabled=PackedStringArray()
+
 [global_group]
 
 enemy=""
