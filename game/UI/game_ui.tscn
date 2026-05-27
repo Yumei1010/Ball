@@ -53,21 +53,6 @@ layout_mode = 2
 [node name="LaunchFailEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1154053665]
 position = Vector2(659, 13)
 
-[node name="SpeedText" type="Label" parent="HBoxContainer" unique_id=614771914]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Speed:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SpeedValue" type="Label" parent="HBoxContainer" unique_id=535699459]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_stretch_ratio = 0.0
-theme_override_font_sizes/font_size = 40
-text = "0"
-vertical_alignment = 1
-
 [node name="ComboLabel" type="Label" parent="." unique_id=230386039]
 custom_minimum_size = Vector2(960, 540)
 layout_mode = 0
@@ -79,23 +64,6 @@ theme_override_font_sizes/font_size = 400
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="GameTimerLabel" type="Label" parent="." unique_id=1550873275]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 80.0
-offset_right = 150.0
-offset_bottom = 130.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "00:00"
-horizontal_alignment = 1
 
 [node name="HighScoreLabel" type="Label" parent="." unique_id=1940434534]
 layout_mode = 1
@@ -125,3 +93,19 @@ theme_override_font_sizes/font_size = 65
 text = "0"
 horizontal_alignment = 1
 
+[node name="GameTimerLabel" type="Label" parent="." unique_id=1550873275]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -422.5
+offset_right = 150.0
+offset_bottom = -367.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "00:00"
+horizontal_alignment = 1
