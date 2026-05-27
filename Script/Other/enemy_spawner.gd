@@ -38,7 +38,7 @@ func _ready() -> void:
 	if not file:
 		push_error("enemy_spawner: Cannot open spawn_waves.json")
 		return
-	var json_data := JSON.parse_string(file.get_as_text())
+	var json_data = JSON.parse_string(file.get_as_text())
 	file.close()
 	if json_data == null or not json_data.has("waves"):
 		push_error("enemy_spawner: Invalid spawn_waves.json")
@@ -215,13 +215,11 @@ func _find_safe_spawn_position() -> Vector2:
 	
 	# 1. 获取生成区域碰撞体（CollisionShape2D）的形状资源（Shape）
 	#    这个形状资源（比如 RectangleShape2D）内部，才存储着真正的尺寸信息。
-	if not spawn_zone_shape: return Vector2.INF; var spawn_shape_resource := spawn_zone_shape.shape
+	if not spawn_zone_shape: return Vector2.INF
+	var spawn_shape_resource := spawn_zone_shape.shape
+	var local_rect := spawn_shape_resource.get_rect()
 	
 	# 2. 获取这个形状资源的【局部】矩形范围。
-	#    例如，一个大小为 (1920, 1080) 的矩形，它的 get_rect() 结果
-	#    通常是 Rect2( -960, -540, 1920, 1080 )，
-	#    因为它的大小是从中心点向两边延伸的。
-	var local_rect = spawn_shape_resource.get_rect()
 	
 	# 3. 我们进行多次尝试（比如 20 次），以提高找到安全位置的几率。
 	for _i: int in range(20):
