@@ -28,11 +28,7 @@ func update_game_timer(new_time_float: float) -> void:
 	game_timer_label.text = "%.2fs" % new_time_float
 
 
-func update_speed_label(new_speed: float) -> void:
-	var s := new_speed / 10.0
-	speed_value_label.text = "%.0f" % s
-	var p := clampf(s / 400.0, 0.0, 1.0)
-	speed_value_label.modulate = lerp(Color.WHITE, Color("ff3b30"), p)
+func update_speed_label(_new_speed: float) -> void: pass
 
 
 func update_energy_display(total_energy: float) -> void:
