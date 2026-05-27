@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2w2xgarrueib"]
-
-[ext_resource type="Script" uid="uid://bo3weeishta7w" path="res://Script/UI/energy_bar.gd" id="1_hqh5g"]
-
-[node name="EnergyBar" type="TextureProgressBar"]
-offset_right = 200.0
-offset_bottom = 24.0
-value = 100.0
-script = ExtResource("1_hqh5g")

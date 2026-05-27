@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8c3khyey3y88"]
 
-[ext_resource type="Script" uid="uid://7kcqwnd83g6j" path="res://Script/actors/enemy/enemy_normal.gd" id="1_6c5vy"]
+[ext_resource type="Script" uid="uid://7kcqwnd83g6j" path="res://script/actors/enemy/enemy_normal.gd" id="1_6c5vy"]
 [ext_resource type="Texture2D" uid="uid://cvld1ymtxq78x" path="res://assets/actor/emeny/normalenemy.png" id="2_6c5vy"]
 
 [node name="EnemyNormal" type="RigidBody2D" groups=["enemy"]]

@@ -23,8 +23,8 @@ config/icon="uid://bs2eutjtdntkj"
 
 [autoload]
 
-PlaceholderArt="*res://Script/Other/placeholder_art.gd"
-DataManager="*res://Script/Other/data_manager.gd"
+PlaceholderArt="*res://script/Other/placeholder_art.gd"
+DataManager="*res://script/Other/data_manager.gd"
 MusicManager="*res://game/music/music_manager.tscn"
 UiAudioManager="*res://game/music/ui_audio_manager.tscn"
 
@@ -74,7 +74,7 @@ toggle_fullscreen={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Script/language/language.en.translation", "res://Script/language/language.zh.translation")
+locale/translations=PackedStringArray("res://script/language/language.en.translation", "res://script/language/language.zh.translation")
 locale/test="en"
 
 [layer_names]

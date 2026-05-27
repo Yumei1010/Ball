@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dk1d2oahsjcih"]
 
-[ext_resource type="Script" uid="uid://b4neha7ubg72x" path="res://Script/audio/ui_audio_manager.gd" id="1_04u2m"]
-[ext_resource type="AudioStream" uid="uid://7x2wt6gxwrnn" path="res://assets/Audio/Sound Effects/ButtonHover.wav" id="1_a2vs6"]
-[ext_resource type="AudioStream" uid="uid://ndaa4lahmigs" path="res://assets/Audio/Sound Effects/BottonClick.wav" id="2_04u2m"]
+[ext_resource type="Script" uid="uid://b4neha7ubg72x" path="res://script/audio/ui_audio_manager.gd" id="1_04u2m"]
+[ext_resource type="AudioStream" uid="uid://7x2wt6gxwrnn" path="res://assets/audio/Sound Effects/ButtonHover.wav" id="1_a2vs6"]
+[ext_resource type="AudioStream" uid="uid://ndaa4lahmigs" path="res://assets/audio/Sound Effects/BottonClick.wav" id="2_04u2m"]
 
 [node name="UIAudioManager" type="Node" unique_id=1145723343]
 process_mode = 2

@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://b627xa5wo81b6"]
+
+[ext_resource type="Script" uid="uid://dvonqy2jkosb7" path="res://game/ui/data_stats.gd" id="1_6smng"]
+
+[node name="DataStats" type="Control" unique_id=1909715407]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6smng")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=426082297]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -24.0
+offset_right = 1941.0
+offset_bottom = 1098.0
+color = Color(0.07015244, 0.07015244, 0.070152424, 1)
+
+[node name="HighScoreLabel" type="Label" parent="." unique_id=1201125161]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 660.0
+offset_top = 182.0
+offset_right = 910.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 50
+text = "历史最高分"
+
+[node name="HighScoreValue" type="Label" parent="." unique_id=937259268]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1001.0
+offset_top = 182.0
+offset_right = 1251.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="TotalTimeLabel" type="Label" parent="." unique_id=818123659]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1054.075
+offset_top = 316.0
+offset_right = 1304.075
+offset_bottom = 385.0
+theme_override_font_sizes/font_size = 50
+text = "总存活时间"
+
+[node name="TotalTimeValue" type="Label" parent="." unique_id=77969747]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1062.0
+offset_top = 380.0
+offset_right = 1364.0
+offset_bottom = 449.0
+theme_override_font_sizes/font_size = 50
+text = "00.00s"
+
+[node name="TotalKillsLabel" type="Label" parent="." unique_id=71870053]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1054.0
+offset_top = 479.0
+offset_right = 1354.0
+offset_bottom = 548.0
+theme_override_font_sizes/font_size = 50
+text = "总击杀数量"
+
+[node name="TotalKillsValue" type="Label" parent="." unique_id=1621020092]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1061.0
+offset_top = 544.0
+offset_right = 1101.0
+offset_bottom = 613.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="MaxKillsLabel" type="Label" parent="." unique_id=135328218]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 264.0
+offset_top = 479.0
+offset_right = 614.0
+offset_bottom = 548.0
+theme_override_font_sizes/font_size = 50
+text = "单局最大击杀数"
+
+[node name="MaxKillsValue" type="Label" parent="." unique_id=2044440313]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 273.0
+offset_top = 544.0
+offset_right = 313.0
+offset_bottom = 613.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="MaxComboLabel" type="Label" parent="." unique_id=634734546]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 264.0
+offset_top = 645.0
+offset_right = 614.0
+offset_bottom = 714.00006
+theme_override_font_sizes/font_size = 50
+text = "单局最大连击数"
+
+[node name="MaxComboValue" type="Label" parent="." unique_id=1839103143]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 276.0
+offset_top = 716.0
+offset_right = 316.0
+offset_bottom = 785.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="MaxComboLabel2" type="Label" parent="." unique_id=182757516]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 264.0
+offset_top = 316.0
+offset_right = 664.00146
+offset_bottom = 385.0
+theme_override_font_sizes/font_size = 50
+text = "单局最长存活时间"
+
+[node name="MaxTimeValue" type="Label" parent="." unique_id=805480680]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 270.0
+offset_top = 380.0
+offset_right = 572.0
+offset_bottom = 449.0
+theme_override_font_sizes/font_size = 50
+text = "00.00s"
+
+[node name="BackButton" type="Button" parent="." unique_id=1466727332 groups=["buttons"]]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 902.0
+offset_top = 898.0
+offset_right = 1010.0
+offset_bottom = 975.0
+theme_override_font_sizes/font_size = 50
+text = "返回"
+flat = true

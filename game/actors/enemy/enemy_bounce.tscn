@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://br4gybywlv3fb"]
 
-[ext_resource type="Script" uid="uid://pej1jdokd8s5" path="res://Script/actors/enemy/enemy_bounce.gd" id="1_nmix8"]
+[ext_resource type="Script" uid="uid://pej1jdokd8s5" path="res://script/actors/enemy/enemy_bounce.gd" id="1_nmix8"]
 [ext_resource type="Texture2D" uid="uid://dairwooa3fi0k" path="res://assets/actor/32ball.png" id="2_nmix8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nmix8"]

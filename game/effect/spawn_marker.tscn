@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdfpt7wsmtbpq"]
 
-[ext_resource type="Script" uid="uid://bjknvnqs0nstb" path="res://Script/effect/spawn_marker.gd" id="1_v6kvi"]
+[ext_resource type="Script" uid="uid://bjknvnqs0nstb" path="res://script/effect/spawn_marker.gd" id="1_v6kvi"]
 
 [node name="SpawnMarker" type="Node2D"]
 process_mode = 1

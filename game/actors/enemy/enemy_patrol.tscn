@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c26xl7m63xw7"]
 
-[ext_resource type="Script" uid="uid://cn1c4mw0mhxlm" path="res://Script/actors/enemy/enemy_patrol.gd" id="1_sdbef"]
+[ext_resource type="Script" uid="uid://cn1c4mw0mhxlm" path="res://script/actors/enemy/enemy_patrol.gd" id="1_sdbef"]
 [ext_resource type="Texture2D" uid="uid://u7yrrcyjsj6i" path="res://assets/actor/emeny/EnemyPatrol.png" id="2_3wc8w"]
 
 [node name="EnemyPatrol" type="RigidBody2D" groups=["enemy"]]

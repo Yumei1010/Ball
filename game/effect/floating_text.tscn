@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d3ydmb1entrrf"]
 
-[ext_resource type="Script" uid="uid://bxbtuhqww1jon" path="res://Script/effect/floating_text.gd" id="1_o8oiq"]
+[ext_resource type="Script" uid="uid://bxbtuhqww1jon" path="res://script/effect/floating_text.gd" id="1_o8oiq"]
 
 [node name="FloatingText" type="Label"]
 offset_right = 40.0
