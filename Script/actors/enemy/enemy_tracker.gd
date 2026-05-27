@@ -17,8 +17,6 @@ var move_direction: Vector2 = Vector2.DOWN
 
 func _ready() -> void:
 	player = get_tree().root.find_child("PlayerBall", true, false)
-	if is_instance_valid(update_timer):
-		update_timer.timeout.connect(_on_update_timer_timeout)
 
 
 func _physics_process(delta: float) -> void:
