@@ -77,7 +77,7 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
-			if not is_aiming:
+			if not is_aiming and linear_velocity.length_squared() < 100.0:
 				is_aiming = true
 				Engine.time_scale = slow_mo_scale
 				drag_start_position_screen = event.position

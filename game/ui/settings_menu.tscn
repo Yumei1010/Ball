@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://db3cb5ikpel7g"]
 
-[ext_resource type="Script" uid="uid://cjhj6mdn7s2eq" path="res://script/UI/settings_menu.gd" id="1_h1nl5"]
+[ext_resource type="Script" uid="uid://bu432narg3d3q" path="res://script/UI/settings_menu.gd" id="1_h1nl5"]
 
 [node name="SettingsMenu" type="Control" unique_id=828530356]
 process_mode = 3
