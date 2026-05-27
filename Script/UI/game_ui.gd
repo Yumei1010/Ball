@@ -2,272 +2,115 @@ extends Control
 
 @onready var score_label: Label = $ScoreLabel
 @onready var high_score_label: Label = $HighScoreLabel
-@onready var combo_lost_anim: AnimationPlayer = $ComboLostAnimationPlayer
-@onready var energy_bar_1: TextureProgressBar = $BoxContainer/EnergyBar
+@onready var combo_label: Label = $ComboLabel
+@onready var speed_value_label: Label = $HBoxContainer/SpeedValue
+@onready var game_timer_label: Label = $GameTimerLabel
+@onready var energy_bar_1: TextureProgressBar = $BoxContainer/EnergyBar1
 @onready var energy_bar_2: TextureProgressBar = $BoxContainer/EnergyBar2
 @onready var energy_bar_3: TextureProgressBar = $BoxContainer/EnergyBar3
 @onready var effect_bar1_full: AnimatedSprite2D = $BoxContainer/EnergyBar1_FullEffect
 @onready var effect_bar2_full: AnimatedSprite2D = $BoxContainer/EnergyBar2_FullEffect
 @onready var effect_bar3_full: AnimatedSprite2D = $BoxContainer/EnergyBar3_FullEffect
 @onready var launch_fail_effect: AnimatedSprite2D = $BoxContainer/LaunchFailEffect
-@onready var speed_value_label: Label = $HBoxContainer/SpeedValue
-# 注意：为了能正确获取，您可能需要手动给场景树里的三个能量条改名
-@onready var combo_label: Label = $ComboLabel
-@onready var game_timer_label: Label = $GameTimerLabel
-@onready var danger_flash: ColorRect = $DangerFlash # 前提是您已经在 GameUI 下建了这个节点
+@onready var combo_lost_anim: AnimationPlayer = $ComboLostAnimationPlayer
+@onready var danger_flash: ColorRect = $DangerFlash
 
-var was_speed_safe: bool = false # 记录上一帧的速度状态
-var danger_tween: Tween # 用来管理动画，防止连续撞墙时动画冲突
-var is_high_score_broken: bool = false
 var displayed_score: float = 0.0
-var combo_label_initial_scale: Vector2 = Vector2.ONE
-var combo_tween: Tween
-var combo_color_tween: Tween # 用于控制连击中断时的颜色动画
+var score_tween: Tween
 
 
-func _ready():
-	# 游戏开始时，显示历史最高分
-	high_score_label.text = "High: " + str(DataManager.high_score)
-	
-	if is_instance_valid(combo_label):
-		combo_label_initial_scale = combo_label.scale
-		
-			# --- 【新增】连接三个特效的动画完成信号 ---
-	if is_instance_valid(effect_bar1_full):
-		effect_bar1_full.animation_finished.connect(func(): effect_bar1_full.hide())
-		
-	if is_instance_valid(effect_bar2_full):
-		effect_bar2_full.animation_finished.connect(func(): effect_bar2_full.hide())
-		
-	if is_instance_valid(effect_bar3_full):
-		effect_bar3_full.animation_finished.connect(func(): effect_bar3_full.hide())
-		
-	if is_instance_valid(launch_fail_effect):
-		launch_fail_effect.animation_finished.connect(func(): launch_fail_effect.hide())
-		
-	if is_instance_valid(danger_flash):
-		danger_flash.modulate.a = 0.0
+func _ready() -> void:
+	high_score_label.text = "High Score: %d" % DataManager.high_score
+	effect_bar1_full.animation_finished.connect(effect_bar1_full.hide)
+	effect_bar2_full.animation_finished.connect(effect_bar2_full.hide)
+	effect_bar3_full.animation_finished.connect(effect_bar3_full.hide)
+	effect_bar1_full.visible = false
+	effect_bar2_full.visible = false
+	effect_bar3_full.visible = false
 
 
-func _process(delta: float) -> void:
-	# --- 【新增】在每一帧，都用 displayed_score 的整数部分来更新文本 ---
-	score_label.text = str(int(displayed_score))
+func _process(_delta: float) -> void:
+	score_label.text = "%d" % int(displayed_score)
 
 
-
-func on_score_updated(new_score: int):
-	# 1. 创建一个 Tween 动画控制器
-	var tween = create_tween()
-	# 使用一个“缓出”曲线，让数字滚动在结束时有一个漂亮的减速效果
-	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	
-	# 2. 【核心】编排动画：
-	#    让本脚本(self)的 "displayed_score" 属性，
-	#    在 0.5 秒内（可调），从它当前的值，平滑地变化到新的目标分数 new_score
-	tween.tween_property(self, "displayed_score", float(new_score), 0.5)
-
-	# 3. 获取最新的历史最高分，并更新显示 (这部分逻辑保持不变)
-	var current_high_score = DataManager.high_score
-	high_score_label.text = "High: " + str(current_high_score)
-	
-	# 4. 根据【最终分数】来决定颜色 (而不是中间值)
-	if new_score >= current_high_score:
-		score_label.add_theme_color_override("font_color", Color("00ffff")) # 青色
+func on_score_updated(new_score: int) -> void:
+	if is_instance_valid(score_tween):
+		score_tween.kill()
+	score_tween = create_tween()
+	score_tween.tween_method(_set_displayed_score, displayed_score, float(new_score), 0.3)
+	if new_score > DataManager.high_score:
+		high_score_label.modulate = Color("00ffff")
 	else:
-		# 如果新的一局开始，分数低于最高分，需要把颜色恢复成红色
-		# 我们需要确保在游戏重启时，颜色能被重置
-		score_label.add_theme_color_override("font_color", Color("ff3b30")) # 红色
+		high_score_label.modulate = Color("ff3b30")
 
+
+func _set_displayed_score(value: float) -> void:
+	displayed_score = value
 
 
 func update_game_timer(new_time_float: float) -> void:
-	# --- 1. 手动截断，保留两位小数 ---
-	# a) 将秒数乘以 100，例如 83.518 -> 8351.8
-	var multiplied = new_time_float * 100.0
-	# b) 取整数部分，砍掉所有多余的小数，得到 8351
-	var truncated_int = int(multiplied)
-	# c) 再除以 100.0，得到精确截断后的浮点数 83.51
-	var truncated_float = truncated_int / 100.0
-	
-	# --- 2. 使用字符串格式化，强制显示两位小数 ---
-	#    "%.2f" 会强制让数字以保留两位小数的形式显示
-	#    如果数字本身只有一位小数（如 2.6），它会自动在末尾补一个 0，变成 "2.60"
-	#    如果数字是整数（如 27.0），它会自动补上 ".00"，变成 "27.00"
-	var formatted_string = "%.2f" % truncated_float
-	
-	# 3. 更新 Label 的文本
-	game_timer_label.text = formatted_string
-
+	game_timer_label.text = "%.2fs" % new_time_float
 
 
 func update_speed_label(new_speed: float) -> void:
-	# 1. 基础数值计算 (保持不变)
-	var scaled_speed = new_speed / 10.0
-	var final_speed_int = int(scaled_speed)
-	speed_value_label.text = str(final_speed_int)
-	
-	var progress = clamp((2000.0 - new_speed) / 500.0, 0.0, 1.0)
-	var curve_progress = pow(progress, 3.0)
-	var safe_color = Color("ffffff")
-	var danger_color = Color("ff3b30")
-	var current_color = safe_color.lerp(danger_color, curve_progress)
-	speed_value_label.add_theme_color_override("font_color", current_color)
-	var current_scale = lerp(1.0, 1.5, curve_progress)
-	speed_value_label.pivot_offset = Vector2(0, speed_value_label.size.y / 2.0)
-	speed_value_label.scale = Vector2(current_scale, current_scale)
-	
-	# -------------------------------------------------------------
-	# --- 【核心修正】持续性边缘红光逻辑 ---
-	# -------------------------------------------------------------
-	var is_currently_safe = (new_speed >= 1500.0)
-	
-	# 只要“当前状态”和“上一刻状态”不一样，就触发状态切换
-	if was_speed_safe != is_currently_safe:
-		toggle_danger_overlay(not is_currently_safe) # 传入 true 代表危险，false 代表安全
-		
-	# 更新状态，供下一帧对比
-	was_speed_safe = is_currently_safe
+	var normalized_speed: float = new_speed / 10.0
+	speed_value_label.text = "%.0f" % normalized_speed
+	var progress: float = clamp(normalized_speed / 400.0, 0.0, 1.0)
+	speed_value_label.modulate = lerp(Color.WHITE, Color("ff3b30"), progress)
+	speed_value_label.scale = lerp(Vector2.ONE, Vector2(1.5, 1.5), progress)
+	toggle_danger_overlay(new_speed < 1500.0)
 
 
-
-# 一个函数，用来接收一个总能量值 (0-300)，并更新所有能量条
-func update_energy_display(total_energy: float):
-	# 将总能量分配到三个能量条上
-	energy_bar_1.value = clamp(total_energy, 0, 100)
-	energy_bar_2.value = clamp(total_energy - 100, 0, 100)
-	energy_bar_3.value = clamp(total_energy - 200, 0, 100)
+func update_energy_display(total_energy: float) -> void:
+	energy_bar_1.value = min(total_energy, 100.0)
+	energy_bar_2.value = clamp(total_energy - 100.0, 0.0, 100.0)
+	energy_bar_3.value = clamp(total_energy - 200.0, 0.0, 100.0)
 
 
-
-func play_bar1_full_animation():
-	if is_instance_valid(effect_bar1_full):
-		effect_bar1_full.show() # 先让它可见
-		effect_bar1_full.play("play_full_effect") # 播放动画 (假设动画名叫 "default")
-
-func play_bar2_full_animation():
-	if is_instance_valid(effect_bar2_full):
-		effect_bar2_full.show()
-		effect_bar2_full.play("play_full_effect")
-
-func play_bar3_full_animation():
-	if is_instance_valid(effect_bar3_full):
-		effect_bar3_full.show()
-		effect_bar3_full.play("play_full_effect")
+func play_bar1_full_animation() -> void:
+	effect_bar1_full.visible = true
+	effect_bar1_full.play("play_full_effect")
 
 
-
-# --- 创建新的接收函数 ---
-func on_player_launch_failed():
-	if is_instance_valid(launch_fail_effect):
-		launch_fail_effect.show()
-		launch_fail_effect.play("flash")
+func play_bar2_full_animation() -> void:
+	effect_bar2_full.visible = true
+	effect_bar2_full.play("play_full_effect")
 
 
+func play_bar3_full_animation() -> void:
+	effect_bar3_full.visible = true
+	effect_bar3_full.play("play_full_effect")
 
-# --- 新增：接收连击更新的函数 ---
-func on_combo_updated(combo_count: int):
-	# 无论 combo_count 是多少，都先更新文本
-	combo_label.text = str(combo_count)
-	
-	# 然后，根据 combo_count 的值，来决定播放哪种动画
+
+func on_player_launch_failed() -> void:
+	launch_fail_effect.visible = true
+	launch_fail_effect.play("flash")
+
+
+func on_combo_updated(combo_count: int) -> void:
 	if combo_count > 0:
-		# 如果是增加连击，就播放“放大”动画
-		play_combo_bump_animation()
+		combo_label.text = "x%d" % combo_count
+		combo_label.visible = true
+		var tween := create_tween()
+		tween.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+		tween.tween_property(combo_label, "scale", Vector2(1.3, 1.3), 0.2)
+		tween.tween_property(combo_label, "scale", Vector2.ONE, 0.2)
 	else:
-		# 如果是连击中断（归零），就播放“缩小”动画
-		play_combo_reset_animation()
+		var tween := create_tween()
+		tween.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+		tween.tween_property(combo_label, "scale", Vector2(0.7, 0.7), 0.1)
+		tween.tween_property(combo_label, "scale", Vector2.ONE, 0.1)
+		tween.tween_callback(func(): combo_label.visible = false)
 
 
-
-# --- 动画一：增加连击时的“放大弹跳” ---
-func play_combo_bump_animation():
-	if not is_instance_valid(combo_label): return
-
-	if is_instance_valid(combo_tween): combo_tween.kill()
-	combo_label.scale = combo_label_initial_scale
-
-	combo_tween = create_tween()
-	# 【手感调校】使用更有弹性的 ELASTIC 曲线
-	combo_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	
-	# 动画序列：
-	# a) 用 0.3 秒放大到 1.5 倍
-	combo_tween.tween_property(combo_label, "scale", combo_label_initial_scale * 1.3, 0.5)
-	# b) 再用 0.2 秒恢复5
-	combo_tween.tween_property(combo_label, "scale", combo_label_initial_scale, 0.5)
+func on_combo_lost() -> void:
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "modulate", Color.RED, 0.1)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
 
 
-
-# --- 动画二：连击中断时的“缩小抖动” ---
-func play_combo_reset_animation():
-	if not is_instance_valid(combo_label): return
-
-	if is_instance_valid(combo_tween): combo_tween.kill()
-	combo_label.scale = combo_label_initial_scale
-	
-	combo_tween = create_tween()
-	# 【手感调校】使用更平滑的 SINE 或 QUART 曲线
-	combo_tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	
-	# 动画序列：
-	# a) 用 0.2 秒，缩小到 0.8 倍
-	combo_tween.tween_property(combo_label, "scale", combo_label_initial_scale * 0.7, 0.4)
-	# b) 再用 0.4 秒，带有弹性地恢复到原始大小
-	#    我们在这里切换一次缓动曲线，让回弹更有力
-	combo_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	combo_tween.tween_property(combo_label, "scale", combo_label_initial_scale, 0.5)
-
-
-
-# --- 新增：接收连击中断的函数 ---
-func on_combo_lost():
-	# 播放 "Combo Lost" 动画
-	#combo_lost_anim.play("show_and_fade")
-	
-	# 播放连击中断的颜色高亮效果
-	play_combo_lost_color_effect()
-	return
-
-
-# --- 新增：播放连击中断时标签颜色变化的动画 ---
-func play_combo_lost_color_effect():
-	# 安全检查，确保 ComboLabel 存在
-	if not is_instance_valid(combo_label):
-		return
-
-	# 如果上一个颜色动画还在播放，先停止它，防止动画冲突
-	if is_instance_valid(combo_color_tween):
-		combo_color_tween.kill()
-
-	# 创建一个新的 Tween 动画实例
-	combo_color_tween = create_tween()
-	# 设置动画曲线，使其末尾有缓动效果，看起来更自然
-	combo_color_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	
-	# 步骤1: 立即将标签的颜色“混合模式”设置为红色。
-	# self_modulate 会将节点自身的颜色与这个颜色相乘，所以设为红色就会变红。
-	combo_label.self_modulate = Color.RED
-	
-	# 步骤2: 创建动画，在 1 秒内，将颜色混合模式平滑地恢复为白色。
-	# Color.WHITE (即 Color(1,1,1,1)) 在这里的含义是“不进行任何颜色混合”，即恢复原始颜色。
-	# 这个动画会独立运行，即使 combo 数值再次变化，颜色也会在1秒后恢复。
-	combo_color_tween.tween_property(combo_label, "self_modulate", Color.WHITE, 1.0)
-
-
-# --- 2. 【全新】状态切换动画函数，替换掉原来的 play_danger_flash ---
-func toggle_danger_overlay(is_dangerous: bool):
-	if not is_instance_valid(danger_flash): return
-	
-	# 如果有正在播放的动画，立刻停止，以新状态为准
-	if is_instance_valid(danger_tween):
-		danger_tween.kill()
-		
-	danger_tween = create_tween()
-	
-	if is_dangerous:
-		# 【进入危险】：平滑淡入到 0.3 的透明度，并【保持住】
-		# (0.3 这个值您可以根据喜好调，推荐在 0.2~0.4 之间，不要太刺眼)
-		danger_tween.tween_property(danger_flash, "modulate:a", 0.3, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	else:
-		# 【恢复安全】：平滑淡出到 0.0，彻底隐藏
-		danger_tween.tween_property(danger_flash, "modulate:a", 0.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+func toggle_danger_overlay(is_dangerous: bool) -> void:
+	var target_alpha: float = 0.3 if is_dangerous else 0.0
+	var tween := create_tween()
+	tween.tween_property(danger_flash, "modulate:a", target_alpha, 0.2)

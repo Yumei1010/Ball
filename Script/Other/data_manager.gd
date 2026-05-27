@@ -22,7 +22,7 @@ var max_survival_time: float = 0.0   # 单局最高存活时间
 
 
 # --- 新增应用设置的函数 ---
-func apply_all_settings():
+func apply_all_settings() -> void:
 	TranslationServer.set_locale(settings.language)
 	# ... (全屏和语言的逻辑不变) ...
 	
@@ -55,13 +55,12 @@ func _ready() -> void:
 	load_data()
 	
 	# --- 【新增】加载完数据后，立刻把语言（以及音量、全屏）应用到游戏中！ ---
-	if has_method("apply_all_settings"):
 		apply_all_settings()
 
 
 
 # --- 终极调试：初始化所有信息 ---
-func debug_reset_all_data():
+func debug_reset_all_data() -> void:
 	print("--- DEBUG: 正在执行【核弹级】完全重置 ---")
 	
 	# 1. 重置核心分数
@@ -89,7 +88,6 @@ func debug_reset_all_data():
 	}
 	
 	# 4. 立即应用这些默认设置
-	if has_method("apply_all_settings"):
 		apply_all_settings()
 	
 	# 5. 将这些“干净”的数据覆盖保存到本地存档文件
@@ -160,14 +158,14 @@ func report_new_score(score: int) -> void:
 
 
 # --- 【新增】一个专门用来标记“已玩过”的函数 ---
-func set_played_before():
+func set_played_before() -> void:
 	if not has_played_before:
 		has_played_before = true
 		save_data()
 
 
 # --- 一个全局的、可被任何地方调用的“切换全屏”函数 ---
-func toggle_fullscreen():
+func toggle_fullscreen() -> void:
 	# 1. 直接反转设置中记录的全屏状态
 	settings.fullscreen = not settings.fullscreen
 	

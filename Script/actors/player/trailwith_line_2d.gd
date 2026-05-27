@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 			remove_point(0)
 
 # --- 【新】这是响应信号的新函数 ---
-func on_player_speed_updated(current_speed: float):
+func on_player_speed_updated(current_speed: float) -> void:
 	var target_color = get_color_for_speed(current_speed)
 	
 	gradient.set_color(1, target_color)

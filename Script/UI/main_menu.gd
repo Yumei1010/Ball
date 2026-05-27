@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 # --- 按下“开始游戏”按钮 (V2.0 - 基于分数判断) ---
-func on_start_button_pressed():
+func on_start_button_pressed() -> void:
 	# --- 【核心修正】我们现在直接检查 DataManager 里的最高分 ---
 	if DataManager.high_score < 1000:
 		# 如果最高分小于 1000，就认为ta是“新玩家”，显示教程
@@ -45,13 +45,13 @@ func on_start_button_pressed():
 
 
 # --- 【新增】一个全新的函数，用来打开设置菜单 ---
-func on_settings_button_pressed():
+func on_settings_button_pressed() -> void:
 	# --- 【核心修正】我们不再创建，而是直接显示 ---
 	settings_menu.show()
 
 
 # --- 【新增】一个全新的函数，用来打开数据统计页面 ---
-func on_stats_button_pressed():
+func on_stats_button_pressed() -> void:
 	# 1. 创建数据统计页面的实例
 	var stats_menu_instance = DataStatsScene.instantiate()
 	
@@ -63,11 +63,11 @@ func on_stats_button_pressed():
 
 
 # --- 按下“退出游戏”按钮 ---
-func on_quit_button_pressed():
+func on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 # --- 当教程图片被点击时 ---
-func on_tutorial_image_clicked(event: InputEvent):
+func on_tutorial_image_clicked(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		# 【核心】让教程图片的点击，也走带有转场动画的流程
 		start_game()

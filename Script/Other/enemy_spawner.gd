@@ -11,11 +11,11 @@ signal score_updated(new_score: int)
 @export var spawn_prep_time: float = 1.0
 
 # --- 节点引用 ---
-@onready var path_manager = $"/root/Main_tscn/PathManager" # 使用绝对路径获取
+@onready var path_manager: Node = get_node_or_null("/root/Main_tscn/PathManager")
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var spawn_zone: Area2D = get_node(spawn_zone_path)
-@onready var spawn_zone_shape: CollisionShape2D = spawn_zone.get_child(0)
-@onready var player: RigidBody2D = get_node("/root/Main_tscn/PlayerBall") # 使用绝对路径$
+@onready var spawn_zone: Area2D = get_node_or_null(spawn_zone_path) if spawn_zone_path else null
+@onready var spawn_zone_shape: CollisionShape2D = spawn_zone.get_child(0) if spawn_zone else null
+@onready var player: RigidBody2D = get_node_or_null("/root/Main_tscn/PlayerBall")
 
 # --- 内部变量 ---
 var current_score: int = 0
@@ -71,7 +71,7 @@ func _process(delta: float) -> void:
 
 
 # --- 【新增】添加分数的函数 ---
-func add_score(base_score: int, combo: int, position: Vector2):
+func add_score(base_score: int, combo: int, position: Vector2) -> void:
 
 	# 1. 计算连击加成
 	var combo_multiplier = 1.0 + min(0.05 * combo, 1.0) # min(..., 1.0) 实现了 x2 的软上限
@@ -188,7 +188,7 @@ func _on_spawn_timer_timeout() -> void:
 
 func _is_position_safe(pos_to_check: Vector2) -> bool:
 	var enemies = get_tree().get_nodes_in_group("enemy")
-	for enemy in enemies:
+	for enemy: Node2D in enemies:
 		if enemy.global_position.distance_to(pos_to_check) < min_spawn_distance:
 			return false # 不安全
 	return true # 安全
@@ -198,7 +198,7 @@ func _is_position_safe(pos_to_check: Vector2) -> bool:
 func _pick_enemy_from_pool() -> String:
 	var rand_val = randf()
 	var cumulative = 0.0
-	for enemy_name in current_wave.enemy_pool:
+	for enemy_name: String in current_wave.enemy_pool:
 		cumulative += current_wave.enemy_pool[enemy_name]
 		if rand_val < cumulative:
 			return enemy_name
@@ -219,7 +219,7 @@ func _find_safe_spawn_position() -> Vector2:
 	var local_rect = spawn_shape_resource.get_rect()
 	
 	# 3. 我们进行多次尝试（比如 20 次），以提高找到安全位置的几率。
-	for i in range(20):
+	for _i: int in range(20):
 		
 		# 4. 在这个【局部】矩形的范围内，生成一个随机的【局部】点。
 		#    randf_range() 会在两个数之间取一个随机浮点数。
@@ -246,7 +246,7 @@ func _find_safe_spawn_position() -> Vector2:
 # 使用 _unhandled_input 可以确保我们的游戏 UI 不会“吞掉”这个按键事件
 func _unhandled_input(event: InputEvent) -> void:
 	# 检查玩家是否按下了我们刚刚定义的操作
-	if event.is_action_pressed("reset_high_score"):
+	if event.is_action_pressed("debug_reset"):
 		print("--- 调试：正在重置历史最高分 ---")
 		
 		# 1. 将 DataManager 中的最高分清零
@@ -261,7 +261,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 # --- 【新增】一个全新的函数，在玩家死亡时被调用 ---
-func on_player_died():
+func on_player_died() -> void:
 	print("GameManager: 玩家已死亡，正在结算本局数据...")
 	
 	# 1. 将本局存活时间，累加到历史总时长

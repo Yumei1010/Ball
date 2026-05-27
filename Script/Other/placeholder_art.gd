@@ -15,7 +15,7 @@ func _ready() -> void:
 	textures["enemy_tracker"] = _make_diamond(Color.ORANGE, Color.YELLOW)
 	textures["enemy_patrol"] = _make_rect(Color.GREEN, Color.LIME_GREEN)
 	textures["enemy_bounce"] = _make_circle(Color.PURPLE, Color.MAGENTA)
-	for i in range(4):
+	for i: int in range(4):
 		textures["bounce_" + str(i)] = _make_number_circle(i)
 	textures["icon"] = _make_circle(Color.BLUE, Color.CYAN, 128)
 
@@ -117,7 +117,7 @@ func _apply_recursive(node: Node) -> void:
 	if node is Sprite2D:
 		_override_sprite(node)
 
-	for child in node.get_children():
+	for child: Node in node.get_children():
 		_apply_recursive(child)
 
 func _override_sprite(sprite: Sprite2D) -> void:

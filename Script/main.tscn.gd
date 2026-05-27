@@ -45,12 +45,12 @@ func _ready() -> void:
 
 
 
-func _input(event: InputEvent):
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().paused = not get_tree().paused
 
 
-func _process(delta: float):
+func _process(_delta: float) -> void:
 	# --- 【核心修正】在这里加入状态检查 ---
 	# 只有在【不是】死亡暂停的情况下，才根据 paused 状态显示菜单
 	if not is_death_pause_active:
@@ -58,7 +58,7 @@ func _process(delta: float):
 
 
 
-func toggle_pause_menu():
+func toggle_pause_menu() -> void:
 	# 1. 直接反转游戏树的暂停状态
 	get_tree().paused = not get_tree().paused
 	
@@ -68,7 +68,7 @@ func toggle_pause_menu():
 
 
 
-func toggle_fullscreen_mode():
+func toggle_fullscreen_mode() -> void:
 	# 我们只做一件事：切换窗口的全屏状态
 	# get_window().mode 这个属性，是 Godot 4 中控制窗口模式最直接的方法
 	
@@ -84,6 +84,6 @@ func toggle_fullscreen_mode():
 
 
 # --- 【新增】一个专门接收死亡信号的函数 ---
-func on_player_died():
+func on_player_died() -> void:
 	# 当收到玩家死亡的信号时，立刻”上锁”
 	is_death_pause_active = true

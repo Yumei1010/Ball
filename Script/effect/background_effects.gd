@@ -17,6 +17,6 @@ func play_combo_lost_effect():
 	play("combo_lost")
 
 # 当任何一个【非循环】动画播放完毕后，这个函数会被调用
-func on_animation_finished():
+func on_animation_finished() -> void:
 	# 动画结束后，切回默认的静态背景
 	play("idle")

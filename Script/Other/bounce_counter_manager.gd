@@ -9,14 +9,14 @@ const BounceCounterScene = preload("res://game/effect/bounce_counter.tscn")
 @export var combo_lost_pitch: float = 0.5
 
 @onready var wall_bounce_player: AudioStreamPlayer = $WallBouncePlayer
-@onready var background_effects: AnimatedSprite2D = get_node("/root/Main_tscn/BackgroundEffects")
+@onready var background_effects := get_node_or_null("/root/Main_tscn/BackgroundEffects")
 
 # --- 【核心】我们现在管理一个数组，而不是单个变量 ---
 var active_counters: Array[Sprite2D] = []
 
 
 # --- 1. 接收撞墙信号 ---
-func on_player_wall_bounced(bounce_count: int, is_combo_lost: bool, impact_position: Vector2):
+func on_player_wall_bounced(bounce_count: int, is_combo_lost: bool, impact_position: Vector2) -> void:
 	if is_instance_valid(background_effects):
 		background_effects.play_bounce_effect() # 我们假设 BackgroundEffects 有这个公开函数
 	
@@ -32,7 +32,7 @@ func on_player_wall_bounced(bounce_count: int, is_combo_lost: bool, impact_posit
   # b) 如果是中断的那一次撞击...
 	if is_combo_lost:
 		# 首先，让【所有】现存的旧数字都破裂
-		for counter in active_counters:
+		for counter: Sprite2D in active_counters:
 			if is_instance_valid(counter):
 				counter.animate_break()
 		active_counters.clear()
@@ -55,10 +55,10 @@ func on_player_wall_bounced(bounce_count: int, is_combo_lost: bool, impact_posit
 
 
 # --- 2. 接收击杀信号 ---
-func on_player_killed_enemy():
+func on_player_killed_enemy() -> void:
 	
 	# 这个循环的逻辑是正确的
-	for counter in active_counters:
+	for counter: Sprite2D in active_counters:
 		if is_instance_valid(counter):
 			# 现在，这个调用会立刻杀死旧动画，并开始播放消失动画
 			counter.animate_reset()
@@ -70,9 +70,9 @@ func on_player_killed_enemy():
 # --- 3. 接收连击中断信号 (来自 lose_combo) ---
 #    注意：这个信号和 is_combo_lost=true 的撞墙信号，可能会同时触发
 #    我们的逻辑需要能处理这种情况
-func on_player_combo_lost():
+func on_player_combo_lost() -> void:
 	# 同样，让【所有】现存的数字都破裂
-	for counter in active_counters:
+	for counter: Sprite2D in active_counters:
 		if is_instance_valid(counter):
 			counter.animate_break()
 	active_counters.clear()

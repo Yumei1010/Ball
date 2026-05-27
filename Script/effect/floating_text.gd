@@ -4,7 +4,7 @@ extends Label
 @export var float_speed: float = 50.0
 @export var fade_duration: float = 0.5
 
-func setup(score_value: int):
+func setup(score_value: int) -> void:
 	text = "+" + str(score_value)
 	
 	# 根据分值动态缩放字体大小 (示例)

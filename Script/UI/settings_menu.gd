@@ -42,14 +42,14 @@ func _ready() -> void:
 		background_animation.play("default")
 
 
-func on_tutorial_button_pressed():
+func on_tutorial_button_pressed() -> void:
 	tutorial_image.show()
 	
-func on_tutorial_image_clicked(event: InputEvent):
+func on_tutorial_image_clicked(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		tutorial_image.hide()
 
-func on_fullscreen_button_pressed():
+func on_fullscreen_button_pressed() -> void:
 	# 1. 获取当前模式
 	var current_mode = DisplayServer.window_get_mode()
 	
@@ -72,7 +72,7 @@ func set_language(lang_code: String):
 	
 
 # --- 【补全】当“音乐音量”滑块的值改变时，这个函数会被调用 ---
-func on_music_volume_changed(value: float):
+func on_music_volume_changed(value: float) -> void:
 	# 1. 将新的滑块值 (0-100)，更新到 DataManager 的设置中
 	DataManager.settings.music_volume = value
 	
@@ -87,7 +87,7 @@ func on_music_volume_changed(value: float):
 
 
 # --- 【补全】当“音效音量”滑块的值改变时，这个函数会被调用 ---
-func on_sfx_volume_changed(value: float):
+func on_sfx_volume_changed(value: float) -> void:
 	# 1. 更新 DataManager
 	DataManager.settings.sfx_volume = value
 	
@@ -103,5 +103,5 @@ func on_sfx_volume_changed(value: float):
 	#    if not test_sfx_player.playing:
 	#        test_sfx_player.play()
 	
-func on_back_button_pressed():
+func on_back_button_pressed() -> void:
 	hide()

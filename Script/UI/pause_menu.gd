@@ -25,13 +25,13 @@ func _ready() -> void:
 
 # --- 按钮回调函数 ---
 
-func on_resume_button_pressed():
+func on_resume_button_pressed() -> void:
 	get_tree().paused = false
 
-func on_tutorial_button_pressed():
+func on_tutorial_button_pressed() -> void:
 	tutorial_image.show()
 
-func on_fullscreen_button_pressed():
+func on_fullscreen_button_pressed() -> void:
 	# 全屏的逻辑可以自己处理，也可以调用 Main 的，自己处理更简单
 	var current_mode = DisplayServer.window_get_mode()
 	if current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -40,11 +40,11 @@ func on_fullscreen_button_pressed():
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
-func on_main_menu_button_pressed():
+func on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scene/main_menu.tscn")
 
-func on_tutorial_image_clicked(event: InputEvent):
+func on_tutorial_image_clicked(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		tutorial_image.hide()
 
