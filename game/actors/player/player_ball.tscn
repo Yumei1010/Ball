@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbus8chf27tph"]
 
-[ext_resource type="Script" uid="uid://c2fcoufi6yji7" path="res://Script/actors/player/PlayerBall.gd" id="1_46ku3"]
+[ext_resource type="Script" uid="uid://c2fcoufi6yji7" path="res://Script/actors/player/player_ball.gd" id="1_46ku3"]
 [ext_resource type="Script" uid="uid://b72hdcmnfo6yx" path="res://Script/actors/player/trailwith_line_2d.gd" id="3_5d0wo"]
 [ext_resource type="Texture2D" uid="uid://d10aoybmu6sxs" path="res://assets/actor/player3.png" id="3_pfcfs"]
 [ext_resource type="AudioStream" uid="uid://dxbaxt7ga6car" path="res://assets/Audio/Sound Effects/death.wav" id="4_pfcfs"]

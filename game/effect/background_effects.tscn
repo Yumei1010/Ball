@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3rlf8mfiwqdj"]
+[gd_scene format=3 uid="uid://c3rlf8mfiwqdj"]
 
 [ext_resource type="Script" uid="uid://g6dgv0xly6pr" path="res://Script/effect/background_effects.gd" id="1"]
 

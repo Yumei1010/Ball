@@ -1,6 +1,6 @@
 extends Control
 
-const GAME_SCENE := "res://Scene/Main.tscn.tscn"
+const GAME_SCENE := "res://Scene/main.tscn"
 
 func _on_start() -> void:
 	get_tree().change_scene_to_file(GAME_SCENE)
