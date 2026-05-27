@@ -55,7 +55,7 @@ func _ready() -> void:
 	load_data()
 	
 	# --- 【新增】加载完数据后，立刻把语言（以及音量、全屏）应用到游戏中！ ---
-		apply_all_settings()
+	apply_all_settings()
 
 
 
