@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://bo3weeishta7w" path="res://Script/UI/energy_bar.gd" id="3_gamrj"]
 
 [node name="EnergyBar" type="TextureProgressBar"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 200.0
+offset_bottom = 24.0
 value = 100.0
-texture_progress_offset = Vector2(2.215, 2.4)
 script = ExtResource("3_gamrj")
