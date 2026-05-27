@@ -5,7 +5,7 @@ extends Control
 @onready var combo_label := $ComboLabel as Label
 @onready var speed_value_label := $HBoxContainer/SpeedValue as Label
 @onready var game_timer_label := $GameTimerLabel as Label
-@onready var energy_bar_1 := $BoxContainer/EnergyBar1 as TextureProgressBar
+@onready var energy_bar_1 := $BoxContainer/EnergyBar as TextureProgressBar
 @onready var energy_bar_2 := $BoxContainer/EnergyBar2 as TextureProgressBar
 @onready var energy_bar_3 := $BoxContainer/EnergyBar3 as TextureProgressBar
 
