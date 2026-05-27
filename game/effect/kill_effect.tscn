@@ -3,31 +3,8 @@
 [ext_resource type="Script" uid="uid://s7xkbfwaxylu" path="res://Script/effect/kill_effect.gd" id="5_b3cbc"]
 [ext_resource type="AudioStream" uid="uid://dlpf6egf4gg18" path="res://assets/Audio/Sound Effects/sha.wav" id="9_b3cbc"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_6s5gk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}],
-"loop": false,
-"name": &"default",
-"speed": 20.0
-}]
-
 [node name="KillEffect" type="AnimatedSprite2D" unique_id=112625654]
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_6s5gk")
 frame = 6
 frame_progress = 1.0
 script = ExtResource("5_b3cbc")

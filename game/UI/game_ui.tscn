@@ -6,88 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bmhu42hm1acrr" path="res://game/UI/energy_bar3.tscn" id="4_hedtu"]
 [ext_resource type="Shader" uid="uid://b8je5gaxvluwm" path="res://Script/shader/DangerFlash.gdshader" id="28_53mlu"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_53mlu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}],
-"loop": false,
-"name": &"play_full_effect",
-"speed": 30.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4y4wl"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}, {
-"duration": 1.0,
-}],
-"loop": false,
-"name": &"flash",
-"speed": 30.0
-}]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_74uo5"]
 shader = ExtResource("28_53mlu")
 shader_parameter/flash_color = Color(1, 0.1, 0.1, 1)
@@ -119,7 +37,6 @@ alignment = 1
 [node name="EnergyBar1_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1322686864]
 visible = false
 position = Vector2(659, 13)
-sprite_frames = SubResource("SpriteFrames_53mlu")
 animation = &"play_full_effect"
 frame = 11
 frame_progress = 1.0
@@ -127,7 +44,6 @@ frame_progress = 1.0
 [node name="EnergyBar2_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1511803887]
 visible = false
 position = Vector2(959, 13)
-sprite_frames = SubResource("SpriteFrames_53mlu")
 animation = &"play_full_effect"
 frame = 11
 frame_progress = 1.0
@@ -135,7 +51,6 @@ frame_progress = 1.0
 [node name="EnergyBar3_FullEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=592816810]
 visible = false
 position = Vector2(1259, 13)
-sprite_frames = SubResource("SpriteFrames_53mlu")
 animation = &"play_full_effect"
 
 [node name="EnergyBar" parent="BoxContainer" unique_id=248450969 instance=ExtResource("2_igryo")]
@@ -149,7 +64,6 @@ layout_mode = 2
 
 [node name="LaunchFailEffect" type="AnimatedSprite2D" parent="BoxContainer" unique_id=1154053665]
 position = Vector2(659, 13)
-sprite_frames = SubResource("SpriteFrames_4y4wl")
 animation = &"flash"
 frame = 20
 frame_progress = 1.0
