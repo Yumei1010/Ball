@@ -44,5 +44,3 @@ func on_combo_updated(combo_count: int) -> void:
 
 func on_combo_lost() -> void:
 	combo_label.visible = false
-
-
