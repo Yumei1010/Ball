@@ -88,7 +88,7 @@ func debug_reset_all_data() -> void:
 	}
 	
 	# 4. 立即应用这些默认设置
-		apply_all_settings()
+	apply_all_settings()
 	
 	# 5. 将这些“干净”的数据覆盖保存到本地存档文件
 	save_data()
