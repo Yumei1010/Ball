@@ -4,11 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b2w2xgarrueib" path="res://game/UI/energy_bar1.tscn" id="2_igryo"]
 [ext_resource type="PackedScene" uid="uid://b1ocj2ah3u560" path="res://game/UI/energy_bar2.tscn" id="3_x2aio"]
 [ext_resource type="PackedScene" uid="uid://bmhu42hm1acrr" path="res://game/UI/energy_bar3.tscn" id="4_hedtu"]
-[ext_resource type="Shader" uid="uid://b8je5gaxvluwm" path="res://Script/shader/DangerFlash.gdshader" id="28_53mlu"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_74uo5"]
-shader = ExtResource("28_53mlu")
-shader_parameter/flash_color = Color(1, 0.1, 0.1, 1)
 
 [node name="GameUI" type="Control" unique_id=1595452720]
 process_mode = 1
@@ -145,9 +140,3 @@ theme_override_font_sizes/font_size = 65
 text = "0"
 horizontal_alignment = 1
 
-[node name="DangerFlash" type="ColorRect" parent="." unique_id=435327450]
-material = SubResource("ShaderMaterial_74uo5")
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
