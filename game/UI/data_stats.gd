@@ -8,7 +8,6 @@ extends Control
 @onready var max_combo_value: Label = %MaxComboValue
 @onready var back_button: Button = %BackButton
 @onready var max_time_value: Label = %MaxTimeValue
-@onready var background_animation: AnimatedSprite2D = $BackgroundAnimation
 
 
 func _ready() -> void:
@@ -22,9 +21,6 @@ func _ready() -> void:
 	max_combo_value.text = str(DataManager.max_combo_per_run)
 	max_time_value.text = format_time(DataManager.max_survival_time)
 	
-	# --- 【新增】在所有数据都准备好后，开始播放背景动画 ---
-	if is_instance_valid(background_animation):
-		if background_animation and background_animation.sprite_frames: background_animation.play("default")
 
 
 # 一个格式化时间的辅助函数
