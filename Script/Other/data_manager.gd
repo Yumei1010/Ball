@@ -175,7 +175,7 @@ func toggle_fullscreen() -> void:
 	# 3. 保存新的设置
 	save_data()
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	# 无论在游戏的哪个角落，只要按下 P 键 (debug_reset)
 	if Input.is_action_just_pressed("debug_reset"):
 		debug_reset_all_data()

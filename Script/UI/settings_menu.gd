@@ -19,9 +19,8 @@ func _ready() -> void:
 	music_slider.value = DataManager.settings.music_volume
 	sfx_slider.value = DataManager.settings.sfx_volume
 	back_button.pressed.connect(on_back_button_pressed)
-	
+
 	# 2. 连接所有信号
-	back_button.pressed.connect(on_back_button_pressed)
 	tutorial_button.pressed.connect(on_tutorial_button_pressed)
 	tutorial_image.gui_input.connect(on_tutorial_image_clicked)
 	fullscreen_button.pressed.connect(on_fullscreen_button_pressed)
@@ -59,8 +58,8 @@ func on_fullscreen_button_pressed() -> void:
 		get_window().move_to_center()
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		
-	var new_mode = DisplayServer.window_get_mode()
+
+	var _new_mode := DisplayServer.window_get_mode()
 
 
 func set_language(lang_code: String):
