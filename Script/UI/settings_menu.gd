@@ -37,8 +37,7 @@ func _ready() -> void:
 	chinese_button.add_to_group("buttons")
 
 	# --- 【新增】在所有数据都准备好后，开始播放背景动画 ---
-	if is_instance_valid(background_animation):
-		# background animation frames deleted — no-op
+	# background animation frames deleted
 
 
 func on_tutorial_button_pressed() -> void:
