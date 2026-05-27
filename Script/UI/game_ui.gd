@@ -20,17 +20,20 @@ var score_tween: Tween
 
 
 func _ready() -> void:
-	high_score_label.text = "High Score: %d" % DataManager.high_score
-	effect_bar1_full.animation_finished.connect(effect_bar1_full.hide)
-	effect_bar2_full.animation_finished.connect(effect_bar2_full.hide)
-	effect_bar3_full.animation_finished.connect(effect_bar3_full.hide)
-	effect_bar1_full.visible = false
-	effect_bar2_full.visible = false
-	effect_bar3_full.visible = false
+	if high_score_label: high_score_label.text = "High Score: %d" % DataManager.high_score
+	if effect_bar1_full:
+		effect_bar1_full.animation_finished.connect(effect_bar1_full.hide)
+		effect_bar1_full.visible = false
+	if effect_bar2_full:
+		effect_bar2_full.animation_finished.connect(effect_bar2_full.hide)
+		effect_bar2_full.visible = false
+	if effect_bar3_full:
+		effect_bar3_full.animation_finished.connect(effect_bar3_full.hide)
+		effect_bar3_full.visible = false
 
 
 func _process(_delta: float) -> void:
-	score_label.text = "%d" % int(displayed_score)
+	if score_label: score_label.text = "%d" % int(displayed_score)
 
 
 func on_score_updated(new_score: int) -> void:
@@ -38,6 +41,7 @@ func on_score_updated(new_score: int) -> void:
 		score_tween.kill()
 	score_tween = create_tween()
 	score_tween.tween_method(_set_displayed_score, displayed_score, float(new_score), 0.3)
+	if not high_score_label: return
 	if new_score > DataManager.high_score:
 		high_score_label.modulate = Color("00ffff")
 	else:
@@ -49,10 +53,11 @@ func _set_displayed_score(value: float) -> void:
 
 
 func update_game_timer(new_time_float: float) -> void:
-	game_timer_label.text = "%.2fs" % new_time_float
+	if game_timer_label: game_timer_label.text = "%.2fs" % new_time_float
 
 
 func update_speed_label(new_speed: float) -> void:
+	if not speed_value_label: return
 	var normalized_speed: float = new_speed / 10.0
 	speed_value_label.text = "%.0f" % normalized_speed
 	var progress: float = clamp(normalized_speed / 400.0, 0.0, 1.0)
@@ -62,32 +67,37 @@ func update_speed_label(new_speed: float) -> void:
 
 
 func update_energy_display(total_energy: float) -> void:
-	energy_bar_1.value = min(total_energy, 100.0)
-	energy_bar_2.value = clamp(total_energy - 100.0, 0.0, 100.0)
-	energy_bar_3.value = clamp(total_energy - 200.0, 0.0, 100.0)
+	if energy_bar_1: energy_bar_1.value = min(total_energy, 100.0)
+	if energy_bar_2: energy_bar_2.value = clamp(total_energy - 100.0, 0.0, 100.0)
+	if energy_bar_3: energy_bar_3.value = clamp(total_energy - 200.0, 0.0, 100.0)
 
 
 func play_bar1_full_animation() -> void:
-	effect_bar1_full.visible = true
-	effect_bar1_full.play("play_full_effect")
+	if effect_bar1_full:
+		effect_bar1_full.visible = true
+		effect_bar1_full.play("play_full_effect")
 
 
 func play_bar2_full_animation() -> void:
-	effect_bar2_full.visible = true
-	effect_bar2_full.play("play_full_effect")
+	if effect_bar2_full:
+		effect_bar2_full.visible = true
+		effect_bar2_full.play("play_full_effect")
 
 
 func play_bar3_full_animation() -> void:
-	effect_bar3_full.visible = true
+	if effect_bar3_full:
+		effect_bar3_full.visible = true
 	effect_bar3_full.play("play_full_effect")
 
 
 func on_player_launch_failed() -> void:
-	launch_fail_effect.visible = true
-	launch_fail_effect.play("flash")
+	if launch_fail_effect:
+		launch_fail_effect.visible = true
+		launch_fail_effect.play("flash")
 
 
 func on_combo_updated(combo_count: int) -> void:
+	if not combo_label: return
 	if combo_count > 0:
 		combo_label.text = "x%d" % combo_count
 		combo_label.visible = true
@@ -111,6 +121,7 @@ func on_combo_lost() -> void:
 
 
 func toggle_danger_overlay(is_dangerous: bool) -> void:
+	if not danger_flash: return
 	var target_alpha: float = 0.3 if is_dangerous else 0.0
 	var tween := create_tween()
 	tween.tween_property(danger_flash, "modulate:a", target_alpha, 0.2)
