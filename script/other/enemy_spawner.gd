@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 
 
 func add_score(base_score: int, combo: int, position: Vector2) -> void:
-	var combo_multiplier := 1.0 + min(0.05 * combo, 1.0)
+	var combo_multiplier: float = 1.0 + min(0.05 * combo, 1.0)
 	var final_score := int(base_score * combo_multiplier)
 	current_score += final_score
 	kills_this_run += 1
