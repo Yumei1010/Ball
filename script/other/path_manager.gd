@@ -1,7 +1,6 @@
 # path_manager.gd
 extends Node
 
-# --- 用来记录每条路径及其占用状态 ---
 # 结构: { path_node: Path2D, is_occupied: bool }
 var patrol_paths: Array = []
 
@@ -14,7 +13,6 @@ func _ready() -> void:
 				"is_occupied": false
 			})
 
-# --- 提供给 EnemySpawner 调用的函数 ---
 func request_free_path() -> Path2D:
 	# 遍历所有路径，寻找一条未被占用的
 	for path_info: Dictionary in patrol_paths:
@@ -22,10 +20,8 @@ func request_free_path() -> Path2D:
 			path_info.is_occupied = true # 标记为“已占用”
 			return path_info.path_node # 返回这条路径节点
 			
-	# 如果没有找到任何空闲路径，返回 null
 	return null
 
-# --- 用来接收敌人死亡信号的函数 ---
 func release_path(path_node_to_release: Path2D) -> void:
 	# 遍历所有路径，找到被释放的那一条
 	for path_info: Dictionary in patrol_paths:

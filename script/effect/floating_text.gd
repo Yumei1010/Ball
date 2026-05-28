@@ -15,10 +15,8 @@ func setup(score_value: int) -> void:
 	var tween = create_tween()
 	tween.set_parallel(true) # 让移动和渐隐同时发生
 	
-	# 1. 向上飘动
 	tween.tween_property(self, "position:y", position.y - 50, fade_duration)
 	
-	# 2. 渐隐消失
 	tween.tween_property(self, "modulate:a", 0.0, fade_duration)
 	
 	# 等待动画完成，然后销毁自己

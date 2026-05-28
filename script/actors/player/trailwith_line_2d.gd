@@ -1,28 +1,22 @@
-# ===================================================================
 # TrailWithLine2D.gd (V_SIGNAL_DRIVEN - 最终信号驱动版)
-# ===================================================================
 extends Line2D
 
-# --- 拖尾基础参数 ---
 @export var point_count: int = 25
 @export var min_distance: float = 15.0
 @export var is_enabled: bool = true
 
-# --- 【新】颜色参数现在直接在这里定义 ---
 var low_speed_color: Color = Color("ff3b30")
 var mid_speed_color: Color = Color("ffffff")
 var high_speed_color: Color = Color("00ffff")
 var low_speed_threshold: float = 1500.0
 var high_speed_threshold: float = 3000.0
 
-# --- 内部变量 ---
 var parent_node: Node2D
 var last_point_position: Vector2 = Vector2.INF
 
 func _ready() -> void:
 	if get_parent() is Node2D:
 		parent_node = get_parent()
-		# 【核心】让拖尾脚本“订阅”父节点(PlayerBall)的速度更新信号
 		if parent_node.has_signal("speed_updated"):
 			parent_node.speed_updated.connect(on_player_speed_updated)
 		else:
@@ -54,7 +48,6 @@ func _process(_delta: float) -> void:
 		while get_point_count() > point_count:
 			remove_point(0)
 
-# --- 【新】这是响应信号的新函数 ---
 func on_player_speed_updated(current_speed: float) -> void:
 	var target_color = get_color_for_speed(current_speed)
 	
@@ -64,7 +57,6 @@ func on_player_speed_updated(current_speed: float) -> void:
 	tail_color.a = 0.0
 	gradient.set_color(0, tail_color)
 
-# --- 颜色计算逻辑被保留，但只在接收到信号时才调用 ---
 func get_color_for_speed(speed: float) -> Color:
 	if speed <= low_speed_threshold:
 		return low_speed_color
