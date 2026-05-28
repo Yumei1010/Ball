@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdfpt7wsmtbpq"]
+[gd_scene format=3 uid="uid://bdfpt7wsmtbpq"]
 
 [ext_resource type="Script" uid="uid://bc504ipu21qrv" path="res://script/effect/spawn_marker.gd" id="1_v6kvi"]
 
-[node name="SpawnMarker" type="Node2D"]
+[node name="SpawnMarker" type="Node2D" unique_id=517113547]
 process_mode = 1
 script = ExtResource("1_v6kvi")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=633707288]

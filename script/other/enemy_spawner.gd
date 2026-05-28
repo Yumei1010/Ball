@@ -167,7 +167,6 @@ func _find_safe_spawn_position() -> Vector2:
 	if not spawn_zone_shape: return Vector2.INF
 	var spawn_shape_resource: Shape2D = spawn_zone_shape.shape
 	var local_rect: Rect2 = spawn_shape_resource.get_rect()
-
 	for _i: int in range(20):
 		var local_pos: Vector2 = Vector2(
 			randf_range(local_rect.position.x, local_rect.end.x),
@@ -176,16 +175,13 @@ func _find_safe_spawn_position() -> Vector2:
 		var world_pos: Vector2 = spawn_zone.to_global(local_pos)
 		if _is_position_safe(world_pos):
 			return world_pos
-
 	return Vector2.INF
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_reset"):
 		DataManager.high_score = 0
 		DataManager.save_data()
 		get_tree().reload_current_scene()
-
 
 func on_player_died() -> void:
 	DataManager.total_play_time += game_time
