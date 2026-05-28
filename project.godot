@@ -19,12 +19,12 @@ run/main_scene="uid://oobqc5xxn0o8"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="KILL LOOP"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="uid://bs2eutjtdntkj"
+config/icon=""
 
 [autoload]
 
-PlaceholderArt="*res://script/Other/placeholder_art.gd"
-DataManager="*res://script/Other/data_manager.gd"
+PlaceholderArt="*res://script/other/placeholder_art.gd"
+DataManager="*res://script/other/data_manager.gd"
 MusicManager="*res://game/music/music_manager.tscn"
 UiAudioManager="*res://game/music/ui_audio_manager.tscn"
 
