@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1ocj2ah3u560"]
 
-[ext_resource type="Script" uid="uid://bo3weeishta7w" path="res://script/UI/energy_bar.gd" id="3_uj6jb"]
+[ext_resource type="Script" uid="uid://c1vrrswkd0scn" path="res://script/ui/energy_bar.gd" id="3_uj6jb"]
 
 [node name="EnergyBar" type="TextureProgressBar"]
 offset_right = 200.0
