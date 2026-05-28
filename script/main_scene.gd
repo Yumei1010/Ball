@@ -1,6 +1,6 @@
 extends Node
 
-@export var battle_bgm: AudioStream
+@export var battle_bgm: AudioStream = preload("res://assets/audio/music/Neon Ghosts.mp3")
 
 @onready var player: RigidBody2D = $PlayerBall
 @onready var game_ui: Control = $GameUI

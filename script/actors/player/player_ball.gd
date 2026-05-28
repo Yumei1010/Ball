@@ -59,7 +59,6 @@ var line_color_low_energy: Color = Color("ff3b30")
 var line_color_tween: Tween
 var camera_zoom_tween: Tween
 
-
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 5
@@ -67,7 +66,6 @@ func _ready() -> void:
 	kill_area.area_entered.connect(_on_kill_area_entered)
 	current_max_speed = default_max_speed
 	speed_updated.connect(on_speed_updated)
-
 
 func _input(event: InputEvent) -> void:
 	if is_dead: return
@@ -128,7 +126,6 @@ func tween_camera_zoom(target_zoom: Vector2, duration: float = 0.2) -> void:
 	camera_zoom_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	camera_zoom_tween.tween_property(camera, "zoom", target_zoom, duration)
 
-
 func _process(delta: float) -> void:
 	if not is_aiming: return
 
@@ -147,7 +144,6 @@ func _process(delta: float) -> void:
 	else:
 		_tween_line_color(line_color_normal)
 
-
 func _physics_process(_delta: float) -> void:
 	velocity_before_impact = linear_velocity
 
@@ -159,7 +155,6 @@ func _physics_process(_delta: float) -> void:
 
 	speed_updated.emit(int(linear_velocity.length()))
 
-
 func _cancel_aiming() -> void:
 	if not is_aiming: return
 	is_aiming = false
@@ -169,11 +164,9 @@ func _cancel_aiming() -> void:
 	if is_instance_valid(cancel_audio): cancel_audio.play()
 	tween_camera_zoom(Vector2(1.0, 1.0), 0.2)
 
-
 func on_speed_updated(current_speed: float) -> void:
 	if is_instance_valid(visual_sprite):
 		visual_sprite.modulate = get_color_for_speed(current_speed)
-
 
 func get_color_for_speed(speed: float) -> Color:
 	var low_thresh: float = trail_node.low_speed_threshold
@@ -189,7 +182,6 @@ func get_color_for_speed(speed: float) -> Color:
 		var progress: float = inverse_lerp(high_thresh, super_speed_thresh, speed)
 		return trail_node.mid_speed_color.lerp(trail_node.high_speed_color, progress)
 
-
 func _update_energy(new_energy: float) -> void:
 	var energy_before: float = current_energy
 	current_energy = clamp(new_energy, 0.0, MAX_ENERGY)
@@ -203,7 +195,6 @@ func _update_energy(new_energy: float) -> void:
 		energy_bar_2_filled.emit()
 	if energy_before < MAX_ENERGY and current_energy >= MAX_ENERGY:
 		energy_bar_3_filled.emit()
-
 
 func _on_kill_area_entered(area: Area2D) -> void:
 	if is_dead: return
@@ -231,7 +222,6 @@ func _on_kill_area_entered(area: Area2D) -> void:
 
 	if is_instance_valid(spawner):
 		spawner.add_score(enemy_body.base_score_value, current_combo, enemy_body.global_position)
-
 
 func _on_body_entered(body: Node) -> void:
 	if is_dead: return
@@ -262,7 +252,6 @@ func _on_body_entered(body: Node) -> void:
 
 	_update_energy(current_energy + energy_per_bounce)
 
-
 func lose_combo() -> void:
 	if current_combo <= 0: return
 	current_combo = 0
@@ -271,12 +260,10 @@ func lose_combo() -> void:
 	current_max_speed = default_max_speed
 	bounces_since_last_kill = 0
 
-
 func trigger_kill_slow_motion(duration: float, time_scale_during_slow_mo: float = 0.2) -> void:
 	Engine.time_scale = time_scale_during_slow_mo
 	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.time_scale = slow_mo_scale if is_aiming else 1.0
-
 
 func _tween_line_color(target_color: Color) -> void:
 	if line_2d.default_color == target_color: return
@@ -285,7 +272,6 @@ func _tween_line_color(target_color: Color) -> void:
 	line_color_tween = create_tween()
 	line_color_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	line_color_tween.tween_property(line_2d, "default_color", target_color, 0.003)
-
 
 func _player_death_sequence() -> void:
 	if is_dead: return

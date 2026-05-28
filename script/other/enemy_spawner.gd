@@ -7,11 +7,11 @@ signal score_updated(new_score: int)
 @export var min_spawn_distance: float = 200.0
 @export var spawn_prep_time: float = 1.0
 
-@export var enemy_normal_scene: PackedScene
-@export var enemy_tracker_scene: PackedScene
-@export var enemy_patrol_scene: PackedScene
-@export var spawn_marker_scene: PackedScene
-@export var floating_text_scene: PackedScene
+@export var enemy_normal_scene: PackedScene = preload("res://scene/actors/enemy/enemy_normal.tscn")
+@export var enemy_tracker_scene: PackedScene = preload("res://scene/actors/enemy/enemy_tracker.tscn")
+@export var enemy_patrol_scene: PackedScene = preload("res://scene/actors/enemy/enemy_patrol.tscn")
+@export var spawn_marker_scene: PackedScene = preload("res://scene/effect/spawn_marker.tscn")
+@export var floating_text_scene: PackedScene = preload("res://scene/effect/floating_text.tscn")
 @export_file var spawn_waves_path: String = "res://spawn_waves.json"
 
 @onready var path_manager: Node = get_node_or_null("/root/Main_tscn/PathManager")
