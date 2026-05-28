@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const KILL_EFFECT := preload("res://game/effect/kill_effect.tscn")
+@export var KILL_EFFECT := preload("res://scene/effect/kill_effect.tscn")
 
 @export_group("Movement")
 @export var move_speed: float = 350.0
@@ -13,7 +13,6 @@ var assigned_path: Path2D
 var path_manager: Node
 var path_points: PackedVector2Array = []
 var current_target_index: int = 1
-
 
 func initialize(path: Path2D, manager: Node) -> void:
 	assigned_path = path
@@ -33,7 +32,6 @@ func initialize(path: Path2D, manager: Node) -> void:
 
 	global_position = path_points[0]
 
-
 func _physics_process(delta: float) -> void:
 	if path_points.size() < 2: return
 
@@ -49,7 +47,6 @@ func _physics_process(delta: float) -> void:
 		if current_target_index >= path_points.size():
 			path_points.reverse()
 			current_target_index = 1
-
 
 func die(impact_direction: Vector2) -> void:
 	if is_instance_valid(path_manager):

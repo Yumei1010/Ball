@@ -1,6 +1,6 @@
 extends Node
 
-const BATTLE_BGM := preload("res://assets/audio/Music/Neon Ghosts.mp3")
+@export var battle_bgm: AudioStream
 
 @onready var player: RigidBody2D = $PlayerBall
 @onready var game_ui: Control = $GameUI
@@ -20,7 +20,7 @@ func _ready() -> void:
 	player.wall_bounced.connect(bounce_counter_manager.on_player_wall_bounced)
 	player.enemy_killed.connect(bounce_counter_manager.on_player_killed_enemy)
 	player.combo_lost.connect(bounce_counter_manager.on_player_combo_lost)
-	MusicManager.crossfade_to(BATTLE_BGM, 1.5)
+	MusicManager.crossfade_to(battle_bgm, 1.5)
 
 func _input(_event: InputEvent) -> void:
 	if _death_pause: return

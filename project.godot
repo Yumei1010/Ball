@@ -20,12 +20,16 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="KILL LOOP"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="res://assets/style/default_bus_layout.tres"
+
 [autoload]
 
 PlaceholderArt="*res://script/other/placeholder_art.gd"
 DataManager="*res://script/other/data_manager.gd"
-MusicManager="*res://game/music/music_manager.tscn"
-UiAudioManager="*res://game/music/ui_audio_manager.tscn"
+MusicManager="*res://scene/music/music_manager.tscn"
+UiAudioManager="*res://scene/music/ui_audio_manager.tscn"
 
 [display]
 
@@ -73,7 +77,7 @@ toggle_fullscreen={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://script/language/language.en.translation", "res://script/language/language.zh.translation")
+locale/translations=PackedStringArray("res://assets/language/language.en.translation", "res://assets/language/language.zh.translation")
 locale/test="en"
 
 [layer_names]

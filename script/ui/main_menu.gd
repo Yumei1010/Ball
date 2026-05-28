@@ -1,9 +1,9 @@
 extends Control
 
-const GAME_SCENE := "res://scene/main.tscn"
+@export_file var game_scene_path: String
 
 func _on_start() -> void:
-	get_tree().change_scene_to_file(GAME_SCENE)
+	if game_scene_path: get_tree().change_scene_to_file(game_scene_path)
 
 func _on_quit() -> void:
 	get_tree().quit()

@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const KILL_EFFECT := preload("res://game/effect/kill_effect.tscn")
+@export var KILL_EFFECT := preload("res://scene/effect/kill_effect.tscn")
 
 @export_group("Movement")
 @export var move_speed: float = 200.0
