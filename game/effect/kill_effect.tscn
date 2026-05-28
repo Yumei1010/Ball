@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://da3smf7ntnkov"]
 
-[ext_resource type="Script" uid="uid://s7xkbfwaxylu" path="res://script/effect/kill_effect.gd" id="5_b3cbc"]
+[ext_resource type="Script" uid="uid://ciempwpe7i77" path="res://script/effect/kill_effect.gd" id="5_b3cbc"]
 [ext_resource type="AudioStream" uid="uid://dlpf6egf4gg18" path="res://assets/audio/Sound Effects/sha.wav" id="9_b3cbc"]
 
 [node name="KillEffect" type="AnimatedSprite2D" unique_id=112625654]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3rlf8mfiwqdj"]
 
-[ext_resource type="Script" uid="uid://g6dgv0xly6pr" path="res://script/effect/background_effects.gd" id="1"]
+[ext_resource type="Script" uid="uid://uivwwiftnqvn" path="res://script/effect/background_effects.gd" id="1"]
 
 [node name="BackgroundEffects" type="AnimatedSprite2D"]
 z_index = -10

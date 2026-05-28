@@ -1,15 +1,8 @@
 extends CanvasLayer
 
-
-func _ready() -> void:
-	%ResumeButton.pressed.connect(_on_resume)
-	%MainMenuButton.pressed.connect(_on_main_menu)
-
-
-func _on_resume() -> void:
+func _on_resume_button_click() -> void:
 	get_tree().paused = false
 
-
-func _on_main_menu() -> void:
+func _on_main_menu_button_click() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scene/main_menu.tscn")

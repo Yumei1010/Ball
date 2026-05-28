@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://hxyhbrbe2li5"]
 
-[ext_resource type="Script" uid="uid://ccrw5r81sighn" path="res://script/actors/enemy/enemy_tracker.gd" id="1_3s0m7"]
+[ext_resource type="Script" uid="uid://cccjv7m3caaf2" path="res://script/actors/enemy/enemy_tracker.gd" id="1_3s0m7"]
 [ext_resource type="Texture2D" uid="uid://m4vpo7k511cj" path="res://assets/actor/emeny/EnemyTracker.png" id="2_3s0m7"]
 
 [node name="EnemyTracker" type="RigidBody2D" groups=["enemy"]]

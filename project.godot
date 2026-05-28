@@ -19,7 +19,6 @@ run/main_scene="uid://oobqc5xxn0o8"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="KILL LOOP"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon=""
 
 [autoload]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://o556t74c6kas"]
 
-[ext_resource type="Script" uid="uid://c50aheqrmlcdj" path="res://script/effect/bounce_counter.gd" id="1_htnxs"]
+[ext_resource type="Script" uid="uid://dh2ife1h77ap5" path="res://script/effect/bounce_counter.gd" id="1_htnxs"]
 
 [node name="BounceCounter" type="Sprite2D"]
 z_index = 50
