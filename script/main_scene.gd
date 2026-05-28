@@ -4,7 +4,6 @@ const BATTLE_BGM := preload("res://assets/audio/Music/Neon Ghosts.mp3")
 
 var _death_pause := false
 
-
 func _ready() -> void:
 	var player: RigidBody2D = $PlayerBall
 	var game_ui: Control = $GameUI
@@ -21,19 +20,15 @@ func _ready() -> void:
 	player.wall_bounced.connect(bounce_mgr.on_player_wall_bounced)
 	player.enemy_killed.connect(bounce_mgr.on_player_killed_enemy)
 	player.combo_lost.connect(bounce_mgr.on_player_combo_lost)
-
 	MusicManager.crossfade_to(BATTLE_BGM, 1.5)
-
 
 func _input(_event: InputEvent) -> void:
 	if _death_pause: return
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().paused = not get_tree().paused
 
-
 func _process(_delta: float) -> void:
 	$PauseMenu.visible = get_tree().paused and not _death_pause
-
 
 func _on_player_died() -> void:
 	_death_pause = true

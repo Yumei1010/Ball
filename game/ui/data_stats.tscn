@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b627xa5wo81b6"]
 
-[ext_resource type="Script" uid="uid://dvonqy2jkosb7" path="res://game/ui/data_stats.gd" id="1_6smng"]
+[ext_resource type="Script" uid="uid://cd8qm1ahjf1kh" path="res://script/ui/data_stats.gd" id="1_4glnd"]
 
 [node name="DataStats" type="Control" unique_id=1909715407]
 layout_mode = 3
@@ -9,15 +9,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6smng")
+script = ExtResource("1_4glnd")
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=426082297]
-layout_mode = 0
-offset_left = -17.0
-offset_top = -24.0
-offset_right = 1941.0
-offset_bottom = 1098.0
-color = Color(0.07015244, 0.07015244, 0.070152424, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.096204735, 0.09620475, 0.096204735, 1)
 
 [node name="HighScoreLabel" type="Label" parent="." unique_id=1201125161]
 unique_name_in_owner = true

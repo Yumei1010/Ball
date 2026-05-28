@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxb2ihg5s7iiy"]
 
-[ext_resource type="Script" uid="uid://djg3frqlupki3" path="res://script/UI/game_ui.gd" id="1_wevqw"]
+[ext_resource type="Script" uid="uid://cnuptcli3ncrc" path="res://script/ui/game_ui.gd" id="1_wevqw"]
 [ext_resource type="PackedScene" uid="uid://b2w2xgarrueib" path="res://game/ui/energy_bar1.tscn" id="2_igryo"]
 [ext_resource type="PackedScene" uid="uid://b1ocj2ah3u560" path="res://game/ui/energy_bar2.tscn" id="3_x2aio"]
 [ext_resource type="PackedScene" uid="uid://bmhu42hm1acrr" path="res://game/ui/energy_bar3.tscn" id="4_hedtu"]

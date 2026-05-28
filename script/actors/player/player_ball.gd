@@ -15,6 +15,7 @@ signal player_died()
 const MAX_ENERGY := 300.0
 const LAUNCH_ENERGY_COST := 100.0
 const CAMERA_SHAKE_STRENGTH := 6.0
+const MIN_LAUNCH_SPEED := 800.0
 
 @export_group("Launch Power", "launch_")
 @export var launch_multiplier: float = 10.0
@@ -77,7 +78,7 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
-			if not is_aiming and linear_velocity.length_squared() < 100.0:
+			if not is_aiming:
 				is_aiming = true
 				Engine.time_scale = slow_mo_scale
 				drag_start_position_screen = event.position
@@ -109,8 +110,10 @@ func _input(event: InputEvent) -> void:
 
 			var screen_drag_vector: Vector2 = event.position - drag_start_position_screen
 			var launch_magnitude: float = screen_drag_vector.length() * launch_multiplier
+			launch_magnitude = maxf(launch_magnitude, MIN_LAUNCH_SPEED)
 			var mouse_world_pos: Vector2 = get_global_mouse_position()
 			var world_direction: Vector2 = (mouse_world_pos - global_position).normalized()
+			if world_direction == Vector2.ZERO: world_direction = Vector2.UP
 			linear_velocity = -world_direction * launch_magnitude
 
 			var is_fast_enough: bool = linear_velocity.length_squared() > kill_threshold * kill_threshold

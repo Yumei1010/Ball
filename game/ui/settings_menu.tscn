@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://db3cb5ikpel7g"]
 
-[ext_resource type="Script" uid="uid://bu432narg3d3q" path="res://script/UI/settings_menu.gd" id="1_h1nl5"]
+[ext_resource type="Script" uid="uid://bu432narg3d3q" path="res://script/ui/settings_menu.gd" id="1_h1nl5"]
 
 [node name="SettingsMenu" type="Control" unique_id=828530356]
 process_mode = 3
@@ -12,17 +12,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h1nl5")
 
-[node name="BackgroundAnimation" type="AnimatedSprite2D" parent="." unique_id=410848280]
-z_index = -1
-position = Vector2(960, 540)
-
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1855729843]
 show_behind_parent = true
 layout_mode = 1
-offset_left = -1.0
-offset_top = -9.0
-offset_right = 1924.0
-offset_bottom = 1085.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.060079634, 0.06415287, 0.12077343, 0.68235296)
 
 [node name="BackButton" type="Button" parent="ColorRect" unique_id=1008223312 groups=["buttons"]]
