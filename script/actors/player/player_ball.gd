@@ -290,7 +290,7 @@ func _player_death_sequence() -> void:
 	Engine.time_scale = 1.0
 	get_tree().paused = true
 
-	var tween := create_tween()
+	var tween: Tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.set_trans(Tween.TRANS_SINE)
 

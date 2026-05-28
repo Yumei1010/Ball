@@ -12,7 +12,7 @@ var shake_rng = RandomNumberGenerator.new() # 一个随机数生成器
 
 # --- 公开的函数 ---
 # 传入一个数值，代表这次冲击的“力度”
-func apply_shake(strength: float):
+func apply_shake(strength: float) -> void:
 	# 将新的冲击力度，与现有的抖动强度叠加，让抖动可以“累积”
 	shake_strength += strength
 

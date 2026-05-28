@@ -21,7 +21,7 @@ func initialize(path: Path2D, manager: Node) -> void:
 	if not assigned_path.curve:
 		return
 
-	var curve := assigned_path.curve
+	var curve: Curve2D = assigned_path.curve
 	path_points.resize(curve.point_count)
 	for i: int in range(curve.point_count):
 		path_points[i] = assigned_path.to_global(curve.get_point_position(i))
@@ -52,7 +52,7 @@ func die(impact_direction: Vector2) -> void:
 	if is_instance_valid(path_manager):
 		path_manager.release_path(assigned_path)
 
-	var effect := KILL_EFFECT.instantiate()
+	var effect: Node = KILL_EFFECT.instantiate()
 	effect.rotation = impact_direction.angle() + PI / 2.0
 	effect.global_position = global_position
 	get_parent().add_child(effect)

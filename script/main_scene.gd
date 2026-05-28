@@ -8,7 +8,7 @@ extends Node
 @onready var bounce_counter_manager: Node = $BounceCounterManager
 @onready var pause_menu: Node = $PauseMenu
 
-var _death_pause := false
+var _death_pause: bool = false
 
 func _ready() -> void:
 	player.energy_updated.connect(game_ui.update_energy_display)

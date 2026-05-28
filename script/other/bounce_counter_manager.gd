@@ -11,10 +11,10 @@ func _ready() -> void:
 
 
 func on_player_wall_bounced(bounce_count: int, is_combo_lost: bool, _impact_position: Vector2) -> void:
-	var player := $WallBouncePlayer as AudioStreamPlayer
+	var audio_player: AudioStreamPlayer = $WallBouncePlayer
 	if not player: return
-	player.pitch_scale = combo_lost_pitch if is_combo_lost else maxf(base_pitch - (bounce_count - 1) * pitch_decrement, 0.1)
-	player.play()
+	audio_player.pitch_scale = combo_lost_pitch if is_combo_lost else maxf(base_pitch - (bounce_count - 1) * pitch_decrement, 0.1)
+	audio_player.play()
 
 
 func on_player_killed_enemy() -> void:

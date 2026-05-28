@@ -35,7 +35,7 @@ func _ready() -> void:
 		"EnemyPatrol": enemy_patrol_scene,
 	}
 
-	var file := FileAccess.open(spawn_waves_path, FileAccess.READ)
+	var file: FileAccess = FileAccess.open(spawn_waves_path, FileAccess.READ)
 	if not file:
 		push_error("enemy_spawner: Cannot open spawn_waves.json")
 		return
@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 
 func add_score(base_score: int, combo: int, position: Vector2) -> void:
 	var combo_multiplier: float = 1.0 + min(0.05 * combo, 1.0)
-	var final_score := int(base_score * combo_multiplier)
+	var final_score: int = int(base_score * combo_multiplier)
 	current_score += final_score
 	kills_this_run += 1
 
@@ -80,7 +80,7 @@ func add_score(base_score: int, combo: int, position: Vector2) -> void:
 	DataManager.report_new_score(current_score)
 	score_updated.emit(current_score)
 
-	var ft := floating_text_scene.instantiate()
+	var ft: Node = floating_text_scene.instantiate()
 	get_parent().add_child(ft)
 	ft.global_position = position
 	ft.setup(final_score)
@@ -97,18 +97,18 @@ func _update_wave() -> void:
 func _check_and_spawn() -> void:
 	if not spawn_timer.is_stopped(): return
 
-	var count := get_tree().get_nodes_in_group("enemy").size()
+	var count: int = get_tree().get_nodes_in_group("enemy").size()
 	if count < current_wave.min_enemies or count < current_wave.max_enemies:
-		var interval := randf_range(current_wave.min_interval, current_wave.max_interval)
+		var interval: float = randf_range(current_wave.min_interval, current_wave.max_interval)
 		spawn_timer.wait_time = interval
 		spawn_timer.start()
 
 
 func _on_spawn_timer_timeout() -> void:
-	var count := get_tree().get_nodes_in_group("enemy").size()
+	var count: int = get_tree().get_nodes_in_group("enemy").size()
 	if count >= current_wave.max_enemies: return
 
-	var enemy_name := _pick_enemy_from_pool()
+	var enemy_name: String = _pick_enemy_from_pool()
 	var enemy_scene: PackedScene = _enemy_scenes[enemy_name]
 
 	var spawn_pos: Vector2
@@ -134,7 +134,7 @@ func _on_spawn_timer_timeout() -> void:
 			path_manager.release_path(patrol_path)
 		return
 
-	var marker := spawn_marker_scene.instantiate()
+	var marker: Node = spawn_marker_scene.instantiate()
 	get_parent().add_child(marker)
 	marker.global_position = spawn_pos
 	marker.spawn_duration = spawn_prep_time
@@ -154,8 +154,8 @@ func _is_position_safe(pos_to_check: Vector2) -> bool:
 
 
 func _pick_enemy_from_pool() -> String:
-	var rand_val := randf()
-	var cumulative := 0.0
+	var rand_val: float = randf()
+	var cumulative: float = 0.0
 	for enemy_name: String in current_wave.enemy_pool:
 		cumulative += current_wave.enemy_pool[enemy_name]
 		if rand_val < cumulative:
@@ -165,15 +165,15 @@ func _pick_enemy_from_pool() -> String:
 
 func _find_safe_spawn_position() -> Vector2:
 	if not spawn_zone_shape: return Vector2.INF
-	var spawn_shape_resource := spawn_zone_shape.shape
-	var local_rect := spawn_shape_resource.get_rect()
+	var spawn_shape_resource: Shape2D = spawn_zone_shape.shape
+	var local_rect: Rect2 = spawn_shape_resource.get_rect()
 
 	for _i: int in range(20):
-		var local_pos := Vector2(
+		var local_pos: Vector2 = Vector2(
 			randf_range(local_rect.position.x, local_rect.end.x),
 			randf_range(local_rect.position.y, local_rect.end.y)
 		)
-		var world_pos := spawn_zone.to_global(local_pos)
+		var world_pos: Vector2 = spawn_zone.to_global(local_pos)
 		if _is_position_safe(world_pos):
 			return world_pos
 

@@ -6,7 +6,7 @@ extends Node
 
 const SIZE := 64
 
-var textures := {}
+var textures: Dictionary = {}
 
 func _ready() -> void:
 	textures["player"] = _make_circle(Color.BLUE, Color.CYAN)
@@ -22,7 +22,7 @@ func _ready() -> void:
 	_apply_to_scene()
 
 func _make_circle(fill: Color, border: Color, p_size := SIZE) -> ImageTexture:
-	var img := Image.create(p_size, p_size, false, Image.FORMAT_RGBA8)
+	var img: Image = Image.create(p_size, p_size, false, Image.FORMAT_RGBA8)
 	img.fill(Color.TRANSPARENT)
 	var cx: float = p_size / 2.0
 	var cr: float = p_size / 2.0 - 2
@@ -34,10 +34,10 @@ func _make_circle(fill: Color, border: Color, p_size := SIZE) -> ImageTexture:
 	return ImageTexture.create_from_image(img)
 
 func _make_triangle(fill: Color, border: Color) -> ImageTexture:
-	var img := Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
+	var img: Image = Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
 	img.fill(Color.TRANSPARENT)
 	var cx: float = SIZE / 2.0
-	var pts := PackedVector2Array([
+	var pts: PackedVector2Array = PackedVector2Array([
 		Vector2(cx, 4), Vector2(SIZE - 4, SIZE - 4), Vector2(4, SIZE - 4)
 	])
 	for y: int in SIZE:
@@ -51,11 +51,11 @@ func _make_triangle(fill: Color, border: Color) -> ImageTexture:
 	return ImageTexture.create_from_image(img)
 
 func _make_diamond(fill: Color, border: Color) -> ImageTexture:
-	var img := Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
+	var img: Image = Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
 	img.fill(Color.TRANSPARENT)
 	var cx: float = SIZE / 2.0
 	var cy: float = SIZE / 2.0
-	var pts := PackedVector2Array([
+	var pts: PackedVector2Array = PackedVector2Array([
 		Vector2(cx, 4), Vector2(SIZE - 4, cy), Vector2(cx, SIZE - 4), Vector2(4, cy)
 	])
 	for y: int in SIZE:
@@ -69,7 +69,7 @@ func _make_diamond(fill: Color, border: Color) -> ImageTexture:
 	return ImageTexture.create_from_image(img)
 
 func _make_rect(fill: Color, border: Color) -> ImageTexture:
-	var img := Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
+	var img: Image = Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
 	img.fill(Color.TRANSPARENT)
 	var m: int = 4
 	for y: int in m:
@@ -84,7 +84,7 @@ func _make_rect(fill: Color, border: Color) -> ImageTexture:
 	return ImageTexture.create_from_image(img)
 
 func _make_number_circle(num: int) -> ImageTexture:
-	var img := Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
+	var img: Image = Image.create(SIZE, SIZE, false, Image.FORMAT_RGBA8)
 	img.fill(Color.TRANSPARENT)
 	var cx: float = SIZE / 2.0
 	var cr: float = SIZE / 2.0 - 2

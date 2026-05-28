@@ -4,12 +4,12 @@ extends Sprite2D
 # No more frame PNGs (3210/ deleted, PlaceholderArt generates them).
 
 var _tween: Tween
-var _is_disappearing := false
+var _is_disappearing: bool = false
 
 
 func animate_spawn(bounce_count: int) -> void:
 	if _is_disappearing: return
-	var idx := clampi(bounce_count - 1, 0, 3)
+	var idx: int = clampi(bounce_count - 1, 0, 3)
 	texture = PlaceholderArt.textures.get("bounce_%d" % idx)
 
 	if is_instance_valid(_tween): _tween.kill()
@@ -17,7 +17,7 @@ func animate_spawn(bounce_count: int) -> void:
 	modulate.a = 0.0
 	show()
 
-	var scale_tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	var scale_tween: Tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	scale_tween.tween_property(self, "scale", Vector2.ONE * 1.2, 0.3)
 	scale_tween.tween_property(self, "scale", Vector2.ONE, 0.5)
 

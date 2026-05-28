@@ -1,12 +1,12 @@
 extends Control
 
-@onready var score_label := $ScoreLabel as Label
-@onready var high_score_label := $HighScoreLabel as Label
-@onready var combo_label := $ComboLabel as Label
-@onready var game_timer_label := $GameTimerLabel as Label
-@onready var energy_bar_1 := $BoxContainer/EnergyBar as TextureProgressBar
-@onready var energy_bar_2 := $BoxContainer/EnergyBar2 as TextureProgressBar
-@onready var energy_bar_3 := $BoxContainer/EnergyBar3 as TextureProgressBar
+@onready var score_label: Label = $ScoreLabel
+@onready var high_score_label: Label = $HighScoreLabel
+@onready var combo_label: Label = $ComboLabel
+@onready var game_timer_label: Label = $GameTimerLabel
+@onready var energy_bar_1: TextureProgressBar = $BoxContainer/EnergyBar as TextureProgressBar
+@onready var energy_bar_2: TextureProgressBar = $BoxContainer/EnergyBar2 as TextureProgressBar
+@onready var energy_bar_3: TextureProgressBar = $BoxContainer/EnergyBar3 as TextureProgressBar
 
 var _displayed_score: float = 0.0
 
@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 	score_label.text = "%d" % int(_displayed_score)
 
 func on_score_updated(new_score: int) -> void:
-	var tween := create_tween()
+	var tween: Tween = create_tween()
 	tween.tween_method(func(v: float): _displayed_score = v, _displayed_score, float(new_score), 0.3)
 
 func update_game_timer(new_time_float: float) -> void:

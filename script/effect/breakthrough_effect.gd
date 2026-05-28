@@ -2,7 +2,7 @@
 extends Label
 
 # 这个函数将由 GameUI 在创建实例后调用
-func animate(score_text: String):
+func animate(score_text: String) -> void:
 	# 1. 设置要显示的文本（即打破记录的那个分数）
 	text = score_text
 	

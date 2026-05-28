@@ -26,7 +26,7 @@ func request_free_path() -> Path2D:
 	return null
 
 # --- 用来接收敌人死亡信号的函数 ---
-func release_path(path_node_to_release: Path2D):
+func release_path(path_node_to_release: Path2D) -> void:
 	# 遍历所有路径，找到被释放的那一条
 	for path_info: Dictionary in patrol_paths:
 		if path_info.path_node == path_node_to_release:

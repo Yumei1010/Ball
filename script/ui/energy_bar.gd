@@ -22,6 +22,6 @@ func update_progress(new_value: float) -> void:
 	value = new_value
 
 func _make_rect(color: Color) -> ImageTexture:
-	var img := Image.create(BAR_W, BAR_H, false, Image.FORMAT_RGBA8)
+	var img: Image = Image.create(BAR_W, BAR_H, false, Image.FORMAT_RGBA8)
 	img.fill(color)
 	return ImageTexture.create_from_image(img)

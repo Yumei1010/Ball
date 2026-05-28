@@ -8,7 +8,7 @@ var path_manager_ref: Node
 
 
 func _ready() -> void:
-	var tween := create_tween()
+	var tween: Tween = create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "modulate:a", 1.0, spawn_duration)
 	tween.finished.connect(_on_marker_ready)

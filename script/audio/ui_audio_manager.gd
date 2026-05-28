@@ -15,9 +15,9 @@ func on_node_added(node: Node) -> void:
 
 
 func scan_existing_buttons() -> void:
-	var buttons := get_tree().get_nodes_in_group("buttons")
+	var buttons: Array[Node] = get_tree().get_nodes_in_group("buttons")
 	for item in buttons:
-		var btn := item as Button
+		var btn: Button = item as Button
 		if btn:
 			connect_button_sounds(btn)
 

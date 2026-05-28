@@ -43,9 +43,9 @@ func on_fullscreen_button_pressed() -> void:
 		get_window().move_to_center()
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	var _new_mode := DisplayServer.window_get_mode()
+	var _new_mode: DisplayServer.WindowMode = DisplayServer.window_get_mode()
 
-func set_language(lang_code: String):
+func set_language(lang_code: String) -> void:
 	DataManager.settings.language = lang_code
 	DataManager.apply_all_settings()
 	DataManager.save_data()
